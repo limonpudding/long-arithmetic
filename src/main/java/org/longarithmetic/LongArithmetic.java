@@ -10,7 +10,7 @@ public class LongArithmetic {
         length=number.length();
         int j=0;
         for (int i = length - 1; i >= 0; --i)
-            digits[j++]= (byte)(number.charAt(i) - '0');
+            digits[j++]=(byte)number.charAt(i);
     }
 
     public LongArithmetic() {
@@ -22,6 +22,12 @@ public class LongArithmetic {
         for (i = n - 1; i >= 0 && digits[i] == 0; --i);
         length = i;
         return length;
+    }
+
+    private void Clean(){
+        for (int i=0;i<n;++i)
+            digits[i]=0;
+        length = 0;
     }
 
     public static LongArithmetic Sum(LongArithmetic a, LongArithmetic b) {
