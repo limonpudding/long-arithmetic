@@ -13,6 +13,10 @@ public class LongArithmetic {
             digits[j++]=(byte)number.charAt(i);
     }
 
+    public LongArithmetic() {
+        length=0;
+    }
+
     private int GetLength() {
         int i;
         for (i = n - 1; i >= 0 && digits[i] == 0; --i);
