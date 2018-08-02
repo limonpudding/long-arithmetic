@@ -54,7 +54,6 @@ public class LongArithmetic {
 
     public static LongArithmetic Mul(LongArithmetic a, LongArithmetic b) {
         LongArithmetic result = new LongArithmetic();
-        //int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
         int tmp = 0;
         int tmp1;
         int i;
@@ -104,5 +103,20 @@ public class LongArithmetic {
         }
         c.GetLength();
         return  c;
+    }
+
+    /*  1 если a>b
+        0 a=b
+       -1 a<b
+     */
+    public int Compare(LongArithmetic a, LongArithmetic b) {
+        for (int i = n - 1; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; ++i);
+        return 1;
+    }
+
+    public static LongArithmetic Div(LongArithmetic a, LongArithmetic b) {
+        LongArithmetic result = new LongArithmetic( );
+        result.GetLength();
+        return  result;
     }
 }
