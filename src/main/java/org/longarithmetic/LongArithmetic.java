@@ -1,9 +1,9 @@
 package org.longarithmetic;
 
 public class LongArithmetic {
-    private static int n;//максимальная длина числа
-    private static byte []digits = new byte[n];
-    private static int length = 0;
+    private int n;//максимальная длина числа
+    private byte []digits = new byte[n];
+    private int length = 0;
     public LongArithmetic(String number) {
         length=number.length();
         int j=0;
@@ -28,10 +28,18 @@ public class LongArithmetic {
         int tmp = 0;
         int i;
         for (i = 0; i < maxLenght; ++i) {
-            result.digits[0] = (byte)((a.digits[0] + b.digits[0] + tmp) % 10);
-            tmp = (a.digits[0] + b.digits[0] + tmp) / 10;
+            result.digits[i] = (byte)((a.digits[i] + b.digits[i] + tmp) % 10);
+            tmp = (a.digits[i] + b.digits[i] + tmp) / 10;
         }
         result.digits[++i] = (byte)tmp;
+        result.length = i;
         return result;
+    }
+
+    public String ToString() {
+        String s = "";
+        for (int i = 0; i < this.length; ++i)
+            s = this.digits[i] + s;
+        return s;
     }
 }
