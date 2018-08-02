@@ -17,10 +17,11 @@ public class App
         //System.out.println(r2.toString());
         //LongArithmetic r = LongArithmetic.Sum(a,b);
         LongArithmetic c = LongArithmetic.Sub(b,a);
+        System.out.println("Кривая b: " + b.ToString() + "   должно быть 2001");
         //System.out.println(r.ToString());
-        System.out.println("-"+c.ToString()+"-");
+        //System.out.println("-"+c.ToString()+"-");
         System.out.println( "Hello World!" );
-        LongArithmetic d = LongArithmetic.Sub(b, a);
+        LongArithmetic d = LongArithmetic.Div(b, a);
         System.out.println(d.ToString());
     }
 }

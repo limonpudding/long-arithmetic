@@ -2,7 +2,7 @@ package org.longarithmetic;
 
 public class LongArithmetic {
 
-    private int n=10000;//максимальная длина числа
+    private static int n=10000;//максимальная длина числа
     private byte []digits = new byte[n];
     private int length = 0;
 
@@ -94,9 +94,10 @@ public class LongArithmetic {
         0 a=b
        -1 a<b
      */
-    public int Compare(LongArithmetic a, LongArithmetic b) {
+    public static int Compare(LongArithmetic a, LongArithmetic b) {
         int i = 0;
-        for (i = n; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; --i);
+        int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
+        for (i = n - 1; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; --i);
         while (a.digits[i] == b.digits[i] && i >= 0)
             --i;
         if (i < 0)
@@ -108,7 +109,19 @@ public class LongArithmetic {
     }
 
     public static LongArithmetic Div(LongArithmetic a, LongArithmetic b) {
-        LongArithmetic result = new LongArithmetic( );
+        LongArithmetic result = new LongArithmetic();
+        LongArithmetic tmp = b;
+        System.out.println(a.ToString());
+        System.out.println(b.ToString());
+        LongArithmetic one = new LongArithmetic();
+        one.digits[0] = 1;
+        one.length = 1;
+        int flagC = Compare(a, tmp);
+        while (flagC != -1) {
+            result = Sum(result, one);
+            tmp = Sum(tmp, b);
+            flagC = Compare(a, tmp);
+        }
         result.GetLength();
         return  result;
     }
