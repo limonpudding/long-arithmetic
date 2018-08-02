@@ -65,4 +65,12 @@ public class AppTest
         assertEquals("178901", c.ToString());
     }
 
+
+    public void testDiv2(){
+        LongArithmetic b = new LongArithmetic("199");
+        LongArithmetic a = new LongArithmetic("899");
+        LongArithmetic c = LongArithmetic.Mul(a,b);
+        assertEquals("4", c.ToString());
+    }
+
 }
