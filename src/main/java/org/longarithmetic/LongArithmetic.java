@@ -14,7 +14,7 @@ public class LongArithmetic {
     /**
      * Конструктор для создания длинного числа.
      * Принимает строку. которая представляет собой целое число со знаком или без
-     * @param number
+     * @param number Строка
      */
     public LongArithmetic(String number) {
         length=number.length();
@@ -173,7 +173,7 @@ public class LongArithmetic {
      * Функция сравнения двух длинных чисел.
      * @param a Первое число для сравнения
      * @param b Второе число для сравнения
-     * @return результат сравнения: 1 если a>b; 0 a=b; -1 a<b.
+     * @return результат сравнения: 1 если a больше b; 0 a равно b; -1 a меньше b.
      */
     public static int Compare(LongArithmetic a, LongArithmetic b) {
         int i = 0;
