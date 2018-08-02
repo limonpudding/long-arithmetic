@@ -10,7 +10,7 @@ public class LongArithmetic {
         length=number.length();
         int j=0;
         for (int i = length - 1; i >= 0; --i)
-            digits[j++]=(byte)(number.charAt(i)-'0');
+            digits[j++]=(byte)(number.charAt(i) - '0');
     }
 
     public LongArithmetic() {
@@ -46,21 +46,21 @@ public class LongArithmetic {
 
     public static LongArithmetic Mul(LongArithmetic a, LongArithmetic b) {
         LongArithmetic result = new LongArithmetic();
-        int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
+        //int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
         int tmp = 0;
+        int tmp1;
         int i;
         int j;
-        for (i = 0; i < maxLength; ++i) {
-            for (j = 0; j < maxLength; ++j) {
-                result.digits[j+i] += (byte) ((a.digits[i] * b.digits[j] + tmp) % 10);
-                tmp = (a.digits[i] * b.digits[j] + tmp) / 10;
+        for (i = 0; i < b.length; ++i) {
+            for (j = 0; j < a.length; ++j) {
+                tmp1 = result.digits[j+i];
+                result.digits[j+i] = (byte)((a.digits[j] * b.digits[i] + tmp1 + tmp) % 10);
+                tmp = (byte)(tmp1 + a.digits[j] * b.digits[i] + tmp) / 10;
             }
             if (tmp>0)
-                result.digits[j + i + 1] = (byte) tmp;
-            result.length = j + i + 1;
+                result.digits[result.GetLength()] += (byte)(tmp % 10);
+            result.length = result.GetLength();
             tmp = 0;
-            if (result.length > maxLength)
-                maxLength = result.length;
             System.out.println(result.ToString());
         }
         return result;
@@ -68,10 +68,8 @@ public class LongArithmetic {
 
     public String ToString() {
         String s = "";
-        for (int i = 0; i < this.GetLength(); ++i) {
+        for (int i = 0; i < this.GetLength(); ++i)
             s = this.digits[i] + s;
-        }
-        System.out.println(length);
         return s;
     }
 
