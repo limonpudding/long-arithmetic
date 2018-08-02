@@ -10,11 +10,11 @@ public class LongArithmetic {
         length=number.length();
         int j=0;
         for (int i = length - 1; i >= 0; --i)
-            digits[j++]=(byte)number.charAt(i);
+            digits[j++]= (byte)(number.charAt(i) - '0');
     }
 
     public LongArithmetic() {
-        length=0;
+        length = 0;
     }
 
     private int GetLength() {
@@ -34,14 +34,20 @@ public class LongArithmetic {
             tmp = (a.digits[i] + b.digits[i] + tmp) / 10;
         }
         result.digits[++i] = (byte)tmp;
-        result.length = i;
+        result.length = i + 1;
+        return result;
+    }
+
+    public static LongArithmetic Mul(LongArithmetic a, LongArithmetic b) {
+        LongArithmetic result = new LongArithmetic();
         return result;
     }
 
     public String ToString() {
-        String s = "";
-        for (int i = 0; i < this.length; ++i)
+        String s = "\0";
+        for (int i = 0; i < this.length; ++i) {
             s = this.digits[i] + s;
+        }
         return s;
     }
 
