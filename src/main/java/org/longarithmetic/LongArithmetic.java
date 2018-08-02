@@ -5,6 +5,7 @@ public class LongArithmetic {
     private int n=10000;//максимальная длина числа
     private byte []digits = new byte[n];
     private int length = 0;
+    private boolean sign = true;
 
     public LongArithmetic(String number) {
         length=number.length();
