@@ -10,7 +10,7 @@ public class LongArithmetic {
         length=number.length();
         int j=0;
         for (int i = length - 1; i >= 0; --i)
-            digits[j++]=(byte)number.charAt(i);
+            digits[j++]=(byte)(number.charAt(i) - '0');
     }
 
     public LongArithmetic() {
@@ -56,6 +56,9 @@ public class LongArithmetic {
         LongArithmetic c = new LongArithmetic( );
         int p=0;
         for (int i = 0; i < maxLength; ++i){
+            System.out.println(c.digits[0]+" "+c.digits[1]+" "+c.digits[2]);
+            System.out.println(a.digits[0]+" "+a.digits[1]+" "+a.digits[2]);
+            System.out.println(b.digits[0]+" "+b.digits[1]+" "+b.digits[2]);
             if (a.digits[i] >= b.digits[i]) {
                 c.digits[i] = (byte) (a.digits[i] - b.digits[i] + p);
                 p = 0;
@@ -65,6 +68,7 @@ public class LongArithmetic {
                 p = -1;
             }
         }
+
         c.GetLength();
         return  c;
     }
