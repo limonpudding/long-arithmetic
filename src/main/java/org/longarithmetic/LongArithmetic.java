@@ -18,14 +18,13 @@ public class LongArithmetic {
      */
     public LongArithmetic(String number) {
         length=number.length();
+        int j=0;
         if (number.charAt(0)=='-'){
-            int j=1;
-            for (int i = length - 1; i >= 0; --i)
+            for (int i = length - 1; i >= 1; --i)
                 digits[j++]=(byte)(number.charAt(i) - '0');
             length--;
         }
         else {
-            int j = 0;
             for (int i = length - 1; i >= 0; --i)
                 digits[j++] = (byte) (number.charAt(i) - '0');
         }
@@ -110,7 +109,10 @@ public class LongArithmetic {
             s = this.digits[i] + s;
         if (sign==false)
             s="-" + s;
+        if (s=="")
+            return "0";
         return s;
+
     }
 
     /**
