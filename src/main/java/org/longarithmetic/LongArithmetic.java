@@ -46,7 +46,6 @@ public class LongArithmetic {
 
     public static LongArithmetic Mul(LongArithmetic a, LongArithmetic b) {
         LongArithmetic result = new LongArithmetic();
-        //int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
         int tmp = 0;
         int tmp1;
         int i;
@@ -78,8 +77,8 @@ public class LongArithmetic {
         LongArithmetic c = new LongArithmetic( );
         int p=0;
         System.out.println(maxLength);
-        for (int i = 0; i < maxLength; ++i){
-            if (a.digits[i] >= b.digits[i]) {
+        for (int i = 0; i < b.GetLength(); ++i){
+            if (a.digits[i] + p >= b.digits[i]) {
                 c.digits[i] = (byte) (a.digits[i] - b.digits[i] + p);
                 p = 0;
             }
@@ -90,5 +89,20 @@ public class LongArithmetic {
         }
         c.GetLength();
         return  c;
+    }
+
+    /*  1 если a>b
+        0 a=b
+       -1 a<b
+     */
+    public int Compare(LongArithmetic a, LongArithmetic b) {
+        for (int i = n - 1; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; ++i);
+        return 1;
+    }
+
+    public static LongArithmetic Div(LongArithmetic a, LongArithmetic b) {
+        LongArithmetic result = new LongArithmetic( );
+        result.GetLength();
+        return  result;
     }
 }

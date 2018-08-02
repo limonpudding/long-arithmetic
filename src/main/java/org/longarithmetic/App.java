@@ -20,5 +20,7 @@ public class App
         //System.out.println(r.ToString());
         System.out.println("-"+c.ToString()+"-");
         System.out.println( "Hello World!" );
+        LongArithmetic d = LongArithmetic.Sub(b, a);
+        System.out.println(d.ToString());
     }
 }
