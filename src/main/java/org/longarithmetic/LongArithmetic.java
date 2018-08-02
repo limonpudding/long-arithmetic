@@ -7,6 +7,11 @@ public class LongArithmetic {
     private int length = 0;
     private boolean sign = true;
 
+    /**
+     * Конструктор для создания длинного числа.
+     * Принимает строку. которая представляет собой целое число со знаком или без
+     * @param number
+     */
     public LongArithmetic(String number) {
         length=number.length();
         if (number.charAt(0)=='-'){
@@ -22,7 +27,7 @@ public class LongArithmetic {
         }
     }
 
-    public LongArithmetic() {
+    private LongArithmetic() {
         length = 0;
     }
 
@@ -60,6 +65,12 @@ public class LongArithmetic {
         return result;
     }
 
+    /**
+     * Функция умножения двух длинных чисел
+     * @param a первый множитель
+     * @param b второй множитель
+     * @return результат умножения
+     */
     public static LongArithmetic Mul(LongArithmetic a, LongArithmetic b) {
         LongArithmetic result = new LongArithmetic();
         if (a.sign != b.sign)
@@ -83,6 +94,10 @@ public class LongArithmetic {
         return result;
     }
 
+    /**
+     * Метод. применяемый к экземпляру объекта длинного числа.
+     * @return Возвращает строку (число со знаком или без)
+     */
     public String ToString() {
         String s = "";
 
@@ -93,7 +108,12 @@ public class LongArithmetic {
         return s;
     }
 
-
+    /**
+     * Функция вычитания двух длинных чисел
+     * @param tmpa Уменьшаемое значение
+     * @param tmpb Вычетаемое значение
+     * @return Разность
+     */
     public static LongArithmetic Sub(LongArithmetic tmpa, LongArithmetic tmpb) {
         LongArithmetic a = tmpa;
         LongArithmetic b = tmpb;
@@ -143,6 +163,13 @@ public class LongArithmetic {
         0 a=b
        -1 a<b
      */
+
+    /**
+     * Функция сравнения двух длинных чисел.
+     * @param a Первое число для сравнения
+     * @param b Второе число для сравнения
+     * @return результат сравнения: 1 если a>b; 0 a=b; -1 a<b.
+     */
     public static int Compare(LongArithmetic a, LongArithmetic b) {
         int i = 0;
         int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
@@ -157,6 +184,12 @@ public class LongArithmetic {
             return -1;
     }
 
+    /**
+     * Функция деления без остатка двух длинных чисел
+     * @param a Делимое
+     * @param b Делитель
+     * @return Результат деления без остатка
+     */
     public static LongArithmetic Div(LongArithmetic a, LongArithmetic b) {
         LongArithmetic result = new LongArithmetic( );
         result.GetLength();
