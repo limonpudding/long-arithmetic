@@ -16,9 +16,9 @@ public class App
         //System.out.println(r1.ToString());
         //System.out.println(r2.toString());
         //LongArithmetic r = LongArithmetic.Sum(a,b);
-        LongArithmetic c = LongArithmetic.Sub(b,a);
-        //System.out.println(r.ToString());
-        System.out.println("-"+c.ToString()+"-");
+        //LongArithmetic c = LongArithmetic.Sub(b,a);
+        System.out.println(b.ToString());
+       // System.out.println("-"+c.ToString()+"-");
         System.out.println( "Hello World!" );
         LongArithmetic d = LongArithmetic.Sub(b, a);
         System.out.println(d.ToString());

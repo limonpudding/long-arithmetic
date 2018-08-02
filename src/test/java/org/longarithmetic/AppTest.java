@@ -51,6 +51,13 @@ public class AppTest
         assertEquals("1999", c.ToString());
     }
 
+    public void testSub3(){
+        LongArithmetic a = new LongArithmetic("2001");
+        LongArithmetic b = new LongArithmetic("2");
+        LongArithmetic c = LongArithmetic.Sub(b,a);
+        assertEquals("-1999", c.ToString());
+    }
+
     public void testMul(){
         LongArithmetic a = new LongArithmetic("199");
         LongArithmetic b = new LongArithmetic("899");

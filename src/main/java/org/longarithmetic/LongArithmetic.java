@@ -85,13 +85,18 @@ public class LongArithmetic {
 
     public String ToString() {
         String s = "";
+
         for (int i = 0; i < this.GetLength(); ++i)
             s = this.digits[i] + s;
+        if (sign==false)
+            s="-" + s;
         return s;
     }
 
 
-    public static LongArithmetic Sub(LongArithmetic a, LongArithmetic b) {
+    public static LongArithmetic Sub(LongArithmetic tmpa, LongArithmetic tmpb) {
+        LongArithmetic a = tmpa;
+        LongArithmetic b = tmpb;
         if (a.sign == true && b.sign == false){
             b.sign=true;
             return Sum(a,b);
@@ -139,8 +144,17 @@ public class LongArithmetic {
        -1 a<b
      */
     public static int Compare(LongArithmetic a, LongArithmetic b) {
-        for (int i = n - 1; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; ++i);
-        return 1;
+        int i = 0;
+        int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
+        for (i = n - 1; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; --i);
+        while (a.digits[i] == b.digits[i] && i >= 0)
+            --i;
+        if (i < 0)
+            return 0;
+        else if (a.digits[i] > b.digits[i])
+            return 1;
+        else
+            return -1;
     }
 
     public static LongArithmetic Div(LongArithmetic a, LongArithmetic b) {
