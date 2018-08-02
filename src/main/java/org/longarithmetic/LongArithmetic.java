@@ -10,7 +10,7 @@ public class LongArithmetic {
         length=number.length();
         int j=0;
         for (int i = length - 1; i >= 0; --i)
-            digits[j++]=(byte)number.charAt(i);
+            digits[j++]=(byte)(number.charAt(i)-'0');
     }
 
     public LongArithmetic() {
@@ -20,7 +20,7 @@ public class LongArithmetic {
     private int GetLength() {
         int i;
         for (i = n - 1; i >= 0 && digits[i] == 0; --i);
-        length = i;
+        length = i + 1;
         return length;
     }
 
@@ -39,7 +39,7 @@ public class LongArithmetic {
             result.digits[i] = (byte)((a.digits[i] + b.digits[i] + tmp) % 10);
             tmp = (a.digits[i] + b.digits[i] + tmp) / 10;
         }
-        result.digits[++i] = (byte)tmp;
+        result.digits[i] = (byte)tmp;
         result.length = i + 1;
         return result;
     }
@@ -67,10 +67,11 @@ public class LongArithmetic {
     }
 
     public String ToString() {
-        String s = "\0";
-        for (int i = 0; i < this.length; ++i) {
+        String s = "";
+        for (int i = 0; i < this.GetLength(); ++i) {
             s = this.digits[i] + s;
         }
+        System.out.println(length);
         return s;
     }
 
@@ -78,6 +79,7 @@ public class LongArithmetic {
         int maxLength = a.GetLength() > b.GetLength()? a.length : b.length;
         LongArithmetic c = new LongArithmetic( );
         int p=0;
+        System.out.println(maxLength);
         for (int i = 0; i < maxLength; ++i){
             if (a.digits[i] >= b.digits[i]) {
                 c.digits[i] = (byte) (a.digits[i] - b.digits[i] + p);

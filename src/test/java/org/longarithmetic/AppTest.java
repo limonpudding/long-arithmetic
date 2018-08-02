@@ -31,8 +31,17 @@ public class AppTest
     /**
      * Rigourous Test :-)
      */
-    public void testApp()
-    {
-        assertTrue( true );
+    public void testSum(){
+        LongArithmetic a = new LongArithmetic("199");
+        LongArithmetic b = new LongArithmetic("899");
+        LongArithmetic c = LongArithmetic.Sum(b,a);
+        assertEquals("1098", c.ToString());
+    }
+
+    public void testSub(){
+        LongArithmetic a = new LongArithmetic("199");
+        LongArithmetic b = new LongArithmetic("899");
+        LongArithmetic c = LongArithmetic.Sub(b,a);
+        assertEquals("700", c.ToString());
     }
 }
