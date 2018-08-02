@@ -95,8 +95,16 @@ public class LongArithmetic {
        -1 a<b
      */
     public int Compare(LongArithmetic a, LongArithmetic b) {
-        for (int i = n - 1; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; ++i);
-        return 1;
+        int i = 0;
+        for (i = n; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; --i);
+        while (a.digits[i] == b.digits[i] && i >= 0)
+            --i;
+        if (i < 0)
+            return 0;
+        else if (a.digits[i] > b.digits[i])
+            return 1;
+        else
+            return -1;
     }
 
     public static LongArithmetic Div(LongArithmetic a, LongArithmetic b) {
