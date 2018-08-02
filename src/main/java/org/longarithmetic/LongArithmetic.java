@@ -48,9 +48,11 @@ public class LongArithmetic {
         LongArithmetic result = new LongArithmetic();
         result.sign=a.sign;
         if (a.sign == true && b.sign == false){
+            b.sign=true;
             return Sub(a,b);
         }
         if (a.sign == false && b.sign == true){
+            b.sign=false;
             return Sub(b,a);
         }
         int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
@@ -135,7 +137,6 @@ public class LongArithmetic {
         int maxLength = a.GetLength() > b.GetLength()? a.length : b.length;
         LongArithmetic c = new LongArithmetic( );
 
-
         if (Compare(a,b) == -1)
         {
             LongArithmetic temp = a;
@@ -191,7 +192,21 @@ public class LongArithmetic {
      * @return Результат деления без остатка
      */
     public static LongArithmetic Div(LongArithmetic a, LongArithmetic b) {
-        LongArithmetic result = new LongArithmetic( );
+        LongArithmetic result = new LongArithmetic();
+        if (a.sign != b.sign)
+            result.sign = false;
+        LongArithmetic tmp = b;
+        System.out.println(a.ToString());
+        System.out.println(b.ToString());
+        LongArithmetic one = new LongArithmetic();
+        one.digits[0] = 1;
+        one.length = 1;
+        int flagC = Compare(a, tmp);
+        while (flagC != -1) {
+            result = Sum(result, one);
+            tmp = Sum(tmp, b);
+            flagC = Compare(a, tmp);
+        }
         result.GetLength();
         return  result;
     }
