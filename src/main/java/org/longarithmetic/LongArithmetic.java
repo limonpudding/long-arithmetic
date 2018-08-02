@@ -79,13 +79,12 @@ public class LongArithmetic {
         int p=0;
         System.out.println(maxLength);
         for (int i = 0; i < maxLength; ++i){
-            if (a.digits[i] + p >= b.digits[i]) {
-                c.digits[i] = (byte) (a.digits[i] - b.digits[i] + p);
-                p = 0;
+            if (a.digits[i] >= b.digits[i]) {
+                c.digits[i] = (byte) (a.digits[i] - b.digits[i]);
             }
             else {
                 c.digits[i] = (byte) (a.digits[i] - b.digits[i] + 10);
-                p = -1;
+                a.digits[i+1]--;
             }
         }
         c.GetLength();

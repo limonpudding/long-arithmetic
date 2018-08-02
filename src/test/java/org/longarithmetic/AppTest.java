@@ -52,10 +52,10 @@ public class AppTest
     }
 
     public void testMul(){
-        LongArithmetic a = new LongArithmetic("2001");
-        LongArithmetic b = new LongArithmetic("2");
-        LongArithmetic c = LongArithmetic.Sub(a,b);
-        assertEquals("1999", c.ToString());
+        LongArithmetic a = new LongArithmetic("199");
+        LongArithmetic b = new LongArithmetic("899");
+        LongArithmetic c = LongArithmetic.Mul(a,b);
+        assertEquals("178901", c.ToString());
     }
 
 }
