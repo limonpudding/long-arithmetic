@@ -33,6 +33,13 @@ public class LongArithmetic {
 
     public static LongArithmetic Sum(LongArithmetic a, LongArithmetic b) {
         LongArithmetic result = new LongArithmetic();
+        result.sign=a.sign;
+        if (a.sign == true && b.sign == false){
+            return Sub(a,b);
+        }
+        if (a.sign == false && b.sign == true){
+            return Sub(b,a);
+        }
         int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
         int tmp = 0;
         int i;
@@ -75,6 +82,13 @@ public class LongArithmetic {
     }
 
     public static LongArithmetic Sub(LongArithmetic a, LongArithmetic b) {
+        if (a.sign == true && b.sign == false){
+            return Sum(a,b);
+        }
+        if (a.sign == false && b.sign == true){
+            b.sign=false;
+            return Sum(b,a);
+        }
         int maxLength = a.GetLength() > b.GetLength()? a.length : b.length;
         LongArithmetic c = new LongArithmetic( );
         int p=0;
