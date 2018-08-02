@@ -200,8 +200,6 @@ public class LongArithmetic {
         if (a.sign != b.sign)
             result.sign = false;
         LongArithmetic tmp = b;
-        System.out.println(a.ToString());
-        System.out.println(b.ToString());
         LongArithmetic one = new LongArithmetic();
         one.digits[0] = 1;
         one.length = 1;

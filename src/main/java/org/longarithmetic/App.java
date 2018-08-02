@@ -28,8 +28,6 @@ public class App
         boolean F=true;
         String a,b;
         int k=0;
-        while(F)
-        {
             System.out.println( "Введите первое число: " );
             a=in.nextLine();
             System.out.println( "Введите второе число: " );
@@ -54,7 +52,7 @@ public class App
                 case 4:
                     System.out.println(LongArithmetic.Sub(new LongArithmetic(a),new LongArithmetic(b)).ToString());
             }
-        }
+
 
 
     }
