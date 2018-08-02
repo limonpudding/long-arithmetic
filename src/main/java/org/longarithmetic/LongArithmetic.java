@@ -17,12 +17,10 @@ public class LongArithmetic {
 
     private int GetLength() {
         int i;
-        for (i = n - 1; i >= 0 && digits[i] == 0; --i);
+        for (i = n - 1; i >= 0 && digits[i] == 0; --i) ;
         length = i;
         return length;
     }
-
-
 
     public static LongArithmetic Sum(LongArithmetic a, LongArithmetic b) {
         LongArithmetic result = new LongArithmetic();
