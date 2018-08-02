@@ -95,7 +95,6 @@ public class LongArithmetic {
                 result.digits[result.GetLength()] += (byte)(tmp % 10);
             result.length = result.GetLength();
             tmp = 0;
-            System.out.println(result.ToString());
         }
         return result;
     }
@@ -150,7 +149,6 @@ public class LongArithmetic {
         }
 
         int p=0;
-        System.out.println(maxLength);
         for (int i = 0; i < maxLength; ++i){
             if (a.digits[i] >= b.digits[i]) {
                 c.digits[i] = (byte) (a.digits[i] - b.digits[i]);
@@ -179,7 +177,7 @@ public class LongArithmetic {
         int i = 0;
         int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
         for (i = n - 1; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; --i);
-        while (a.digits[i] == b.digits[i] && i >= 0)
+        while (i >= 0 && a.digits[i] == b.digits[i])
             --i;
         if (i < 0)
             return 0;
