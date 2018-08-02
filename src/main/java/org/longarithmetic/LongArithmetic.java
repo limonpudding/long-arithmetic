@@ -24,6 +24,11 @@ public class LongArithmetic {
         return length;
     }
 
+    private void Clean(){
+        for (int i=0;i<n;++i)
+            digits[i]=0;
+    }
+
     public static LongArithmetic Sum(LongArithmetic a, LongArithmetic b) {
         LongArithmetic result = new LongArithmetic();
         int maxLenght = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();

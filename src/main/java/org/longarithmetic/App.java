@@ -12,6 +12,9 @@ public class App
         LongArithmetic a = new LongArithmetic("199");
         LongArithmetic b = new LongArithmetic("899");
         LongArithmetic r = LongArithmetic.Sum(a,b);
+        LongArithmetic с = LongArithmetic.Sub(b,a);
         System.out.println(r.ToString());
+        System.out.println(с.ToString());
+        System.out.println( "Hello World!" );
     }
 }
