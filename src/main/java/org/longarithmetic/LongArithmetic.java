@@ -11,6 +11,10 @@ public class LongArithmetic {
             digits[j++]=(byte)number.charAt(i);
     }
 
+    public LongArithmetic() {
+        length = 0;
+    }
+
     private int GetLength() {
         int i;
         for (i = n - 1; i >= 0 && digits[i] == 0; --i);
@@ -18,4 +22,18 @@ public class LongArithmetic {
         return length;
     }
 
+
+
+    public static LongArithmetic Sum(LongArithmetic a, LongArithmetic b) {
+        LongArithmetic result = new LongArithmetic();
+        int maxLenght = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
+        int tmp = 0;
+        int i;
+        for (i = 0; i < maxLenght; ++i) {
+            result.digits[0] = (byte)((a.digits[0] + b.digits[0] + tmp) % 10);
+            tmp = (a.digits[0] + b.digits[0] + tmp) / 10;
+        }
+        result.digits[++i] = (byte)tmp;
+        return result;
+    }
 }
