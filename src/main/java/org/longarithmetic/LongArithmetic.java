@@ -81,7 +81,7 @@ public class LongArithmetic {
         int p=0;
         System.out.println(maxLength);
         for (int i = 0; i < maxLength; ++i){
-            if (a.digits[i] >= b.digits[i]) {
+            if (a.digits[i] + p >= b.digits[i]) {
                 c.digits[i] = (byte) (a.digits[i] - b.digits[i] + p);
                 p = 0;
             }
