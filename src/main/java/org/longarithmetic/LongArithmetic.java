@@ -7,6 +7,10 @@ public class LongArithmetic {
     private int length = 0;
     private boolean sign = true;
 
+    public static void SetDigitsCount(int dimension) {
+            n = dimension;
+    }
+
     public LongArithmetic(String number) {
         length=number.length();
         if (number.charAt(0)=='-'){
