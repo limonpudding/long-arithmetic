@@ -2,16 +2,24 @@ package org.longarithmetic;
 
 public class LongArithmetic {
 
-    private int n=10000;//максимальная длина числа
+    private static int n=10000;//максимальная длина числа
     private byte []digits = new byte[n];
     private int length = 0;
     private boolean sign = true;
 
     public LongArithmetic(String number) {
         length=number.length();
-        int j=0;
-        for (int i = length - 1; i >= 0; --i)
-            digits[j++]=(byte)(number.charAt(i) - '0');
+        if (number.charAt(0)=='-'){
+            int j=1;
+            for (int i = length - 1; i >= 0; --i)
+                digits[j++]=(byte)(number.charAt(i) - '0');
+            length--;
+        }
+        else {
+            int j = 0;
+            for (int i = length - 1; i >= 0; --i)
+                digits[j++] = (byte) (number.charAt(i) - '0');
+        }
     }
 
     public LongArithmetic() {
@@ -54,6 +62,8 @@ public class LongArithmetic {
 
     public static LongArithmetic Mul(LongArithmetic a, LongArithmetic b) {
         LongArithmetic result = new LongArithmetic();
+        if (a.sign != b.sign)
+            result.sign = false;
         int tmp = 0;
         int tmp1;
         int i;
@@ -80,16 +90,35 @@ public class LongArithmetic {
         return s;
     }
 
+
     public static LongArithmetic Sub(LongArithmetic a, LongArithmetic b) {
         if (a.sign == true && b.sign == false){
+            b.sign=true;
             return Sum(a,b);
         }
         if (a.sign == false && b.sign == true){
             b.sign=false;
             return Sum(b,a);
         }
+        if (a.sign == false && b.sign == false){
+            b.sign=true;
+            LongArithmetic temp = a;
+            a = b;
+            b = temp;
+        }
+
         int maxLength = a.GetLength() > b.GetLength()? a.length : b.length;
         LongArithmetic c = new LongArithmetic( );
+
+
+        if (Compare(a,b) == -1)
+        {
+            LongArithmetic temp = a;
+            a = b;
+            b = temp;
+            c.sign=false;
+        }
+
         int p=0;
         System.out.println(maxLength);
         for (int i = 0; i < maxLength; ++i){
@@ -109,7 +138,7 @@ public class LongArithmetic {
         0 a=b
        -1 a<b
      */
-    public int Compare(LongArithmetic a, LongArithmetic b) {
+    public static int Compare(LongArithmetic a, LongArithmetic b) {
         for (int i = n - 1; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; ++i);
         return 1;
     }
