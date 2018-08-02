@@ -20,6 +20,7 @@ public class LongArithmetic {
         length=number.length();
         int j=0;
         if (number.charAt(0)=='-'){
+            sign = false;
             for (int i = length - 1; i >= 1; --i)
                 digits[j++]=(byte)(number.charAt(i) - '0');
             length--;
@@ -104,13 +105,15 @@ public class LongArithmetic {
      */
     public String ToString() {
         String s = "";
-
+        if (length==-1){
+            return "Деление на ноль невозможно";
+        }
         for (int i = 0; i < this.GetLength(); ++i)
             s = this.digits[i] + s;
-        if (sign==false)
-            s="-" + s;
         if (s=="")
             return "0";
+        if (sign==false)
+            s="-" + s;
         return s;
 
     }
@@ -196,7 +199,12 @@ public class LongArithmetic {
      * @return Результат деления без остатка
      */
     public static LongArithmetic Div(LongArithmetic a, LongArithmetic b) {
+
         LongArithmetic result = new LongArithmetic();
+        if (b.ToString()=="0"){
+            result.length=-1;
+            return result;
+        }
         if (a.sign != b.sign)
             result.sign = false;
         LongArithmetic tmp = b;
