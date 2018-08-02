@@ -47,7 +47,7 @@ public class LongArithmetic {
 
     public static LongArithmetic Sub(LongArithmetic a, LongArithmetic b) {
         int maxLength = a.GetLength() > b.GetLength()? a.length : b.length;
-        LongArithmetic c = new LongArithmetic();
+        LongArithmetic c = new LongArithmetic( );
         int p=0;
         for (int i = 0; i < maxLength; ++i){
             if (a.digits[i] >= b.digits[i]) {
