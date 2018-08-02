@@ -158,7 +158,19 @@ public class LongArithmetic {
     }
 
     public static LongArithmetic Div(LongArithmetic a, LongArithmetic b) {
-        LongArithmetic result = new LongArithmetic( );
+        LongArithmetic result = new LongArithmetic();
+        LongArithmetic tmp = b;
+        System.out.println(a.ToString());
+        System.out.println(b.ToString());
+        LongArithmetic one = new LongArithmetic();
+        one.digits[0] = 1;
+        one.length = 1;
+        int flagC = Compare(a, tmp);
+        while (flagC != -1) {
+            result = Sum(result, one);
+            tmp = Sum(tmp, b);
+            flagC = Compare(a, tmp);
+        }
         result.GetLength();
         return  result;
     }
