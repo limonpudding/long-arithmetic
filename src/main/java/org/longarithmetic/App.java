@@ -11,7 +11,9 @@ public class App
         System.out.println( "Hello World!" );
         LongArithmetic a = new LongArithmetic("199");
         LongArithmetic b = new LongArithmetic("899");
-        LongArithmetic r = LongArithmetic.Sum(a,b);
-        System.out.println(r.ToString());
+        LongArithmetic r1 = LongArithmetic.Sum(a,b);
+        LongArithmetic r2 = LongArithmetic.Mul(a,b);
+        System.out.println(r1.ToString());
+        System.out.println(r2.toString());
     }
 }

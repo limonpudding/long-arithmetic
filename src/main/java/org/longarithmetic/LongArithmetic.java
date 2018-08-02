@@ -26,10 +26,10 @@ public class LongArithmetic {
 
     public static LongArithmetic Sum(LongArithmetic a, LongArithmetic b) {
         LongArithmetic result = new LongArithmetic();
-        int maxLenght = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
+        int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
         int tmp = 0;
         int i;
-        for (i = 0; i < maxLenght; ++i) {
+        for (i = 0; i < maxLength; ++i) {
             result.digits[i] = (byte)((a.digits[i] + b.digits[i] + tmp) % 10);
             tmp = (a.digits[i] + b.digits[i] + tmp) / 10;
         }
@@ -40,6 +40,23 @@ public class LongArithmetic {
 
     public static LongArithmetic Mul(LongArithmetic a, LongArithmetic b) {
         LongArithmetic result = new LongArithmetic();
+        int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
+        int tmp = 0;
+        int i;
+        int j;
+        for (i = 0; i < maxLength; ++i) {
+            for (j = 0; j < maxLength; ++j) {
+                result.digits[j+i] += (byte) ((a.digits[i] * b.digits[j] + tmp) % 10);
+                tmp = (a.digits[i] * b.digits[j] + tmp) / 10;
+            }
+            if (tmp>0)
+                result.digits[j + i + 1] = (byte) tmp;
+            result.length = j + i + 1;
+            tmp = 0;
+            if (result.length > maxLength)
+                maxLength = result.length;
+            System.out.println(result.ToString());
+        }
         return result;
     }
 
