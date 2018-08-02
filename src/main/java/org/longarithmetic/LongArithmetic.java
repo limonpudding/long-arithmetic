@@ -18,4 +18,13 @@ public class LongArithmetic {
         return length;
     }
 
+    public static LongArithmetic Sub(LongArithmetic a, LongArithmetic b) {
+        int maxLength = a.GetLength() > b.GetLength()? a.length : b.length;
+        LongArithmetic c = new LongArithmetic();
+        for (int i = 0; i < maxLength; ++i){
+            if (a.digits[i] >= b.digits[i])
+                c.digits[i]=a.digits[i] - b.digits[i];
+        }
+    }
+
 }
