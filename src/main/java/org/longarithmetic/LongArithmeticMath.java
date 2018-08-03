@@ -13,15 +13,6 @@ public class LongArithmeticMath {
         n = dimension;
     }
 
-    /**
-     * Конструктор для создания длинного числа.
-     * Принимает строку. которая представляет собой целое число со знаком или без
-     *
-     * @param number Строка
-     */
-
-
-
     //TODO переименовать класс, содержащий операции над числами в длинной арифметике. Всё, что статик в нём оставить. LongArithmeticMath
     public static LongArithmethic Sum(LongArithmethic a, LongArithmethic b) {
         LongArithmethic result = new LongArithmeticImpl();
@@ -41,7 +32,7 @@ public class LongArithmeticMath {
             result.getDigits()[i] = (byte) ((a.getDigits()[i] + b.getDigits()[i] + tmp) % 10);
             tmp = (a.getDigits()[i] + b.getDigits()[i] + tmp) / 10;
         }
-        result.getDigits()[i] = (byte)tmp;
+        result.getDigits()[i] = (byte) tmp;
         result.getLength();
         return result;
     }
@@ -55,7 +46,7 @@ public class LongArithmeticMath {
      */
     public static LongArithmethic Mul(LongArithmethic a, LongArithmethic b) {
         LongArithmethic result = new LongArithmeticImpl();
-        if (a.getSign()!= b.getSign())
+        if (a.getSign() != b.getSign())
             result.setSign(false);
         int tmp = 0;
         int tmp1;
@@ -107,7 +98,7 @@ public class LongArithmeticMath {
             b = temp;
         }
 
-        int maxLength = a.getLength() > b.getLength() ? a.getLength(): b.getLength();
+        int maxLength = a.getLength() > b.getLength() ? a.getLength() : b.getLength();
         LongArithmethic c = new LongArithmeticImpl();
 
         if (a.compareTo(b) == -1) {
@@ -119,12 +110,13 @@ public class LongArithmeticMath {
 
         for (int i = 0; i < maxLength; ++i) {
             if (a.getDigits()[i] >= b.getDigits()[i]) {
-                c.digits[i] = (byte) (a.getDigits()[i] - b.getDigits()[i]);
+                c.setDigit((byte) (a.getDigits()[i] - b.getDigits()[i]), i);
             } else {
-                c.digits[i] = (byte) (a.getDigits()[i] - b.getDigits()[i] + 10);
-                byte [] temp =a.getDigits();
-                temp[i+1]--;
+                c.setDigit((byte) (a.getDigits()[i] - b.getDigits()[i] + 10), i);
+                byte[] temp = a.getDigits();
+                temp[i + 1]--;
                 a.setDigits(temp);
+                a.setDigit((byte) (a.getDigit(i + 1) - 1), i + 1);
             }
         }
         c.getLength();
@@ -149,7 +141,7 @@ public class LongArithmeticMath {
      * Функция деления без остатка двух длинных чисел
      *
      * @param dividend Делимое
-     * @param divider Делитель
+     * @param divider  Делитель
      * @return Результат деления без остатка
      */
     public static LongArithmethic div(LongArithmethic dividend, LongArithmethic divider) {
