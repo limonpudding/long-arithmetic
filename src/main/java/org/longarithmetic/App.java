@@ -44,13 +44,13 @@ public class App
                 case 0:
                     F=false;break;
                 case 1:
-                    System.out.println("\nОтвет: "+ LongArithmeticMath.Mul(new LongArithmeticMath(a),new LongArithmeticMath(b)).ToString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.Mul(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
                 case 2:
-                    System.out.println("\nОтвет: "+ LongArithmeticMath.div(new LongArithmeticMath(a),new LongArithmeticMath(b)).ToString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.div(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
                 case 3:
-                    System.out.println("\nОтвет: "+ LongArithmeticMath.Sum(new LongArithmeticMath(a),new LongArithmeticMath(b)).ToString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.Sum(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
                 case 4:
-                    System.out.println("\nОтвет: "+ LongArithmeticMath.Sub(new LongArithmeticMath(a),new LongArithmeticMath(b)).ToString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.Sub(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
             }
 
 
