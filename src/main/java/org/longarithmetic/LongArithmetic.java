@@ -42,7 +42,7 @@ public class LongArithmetic {
         return length;
     }
 
-    private void Clean(){
+    public void Clean(){
         for (int i=0;i<n;++i)
             digits[i]=0;
         length = 0;

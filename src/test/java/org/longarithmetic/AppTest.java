@@ -1,8 +1,7 @@
 package org.longarithmetic;
 
-
-import org.junit.Ignore;
-import org.junit.Test;
+import static org.mockito.Mockito.*;
+import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
 
@@ -11,6 +10,25 @@ import static org.junit.Assert.assertEquals;
  */
 public class AppTest
 {
+    private LongArithmetic a;
+    private LongArithmetic b;
+    private LongArithmetic c;
+
+    @BeforeClass
+    public static void beforeClass() {
+        System.out.println("Начато тестирование класса длинных чисел");
+    }
+
+    @AfterClass
+    public  static void afterClass() {
+        System.out.println("Тестирование класса длинных чисел окончено");
+    }
+
+    @Before
+    public void initTest() {
+        System.out.println("Тест завершён");
+    }
+
     @Test
     public void testSum(){
         LongArithmetic a = new LongArithmetic("199");
