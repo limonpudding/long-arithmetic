@@ -69,7 +69,7 @@ public class AppTest extends AbstractTests {
     public void testMulPositiveWithPositive(){
         LongArithmethic a = new LongArithmeticImpl("199");
         LongArithmethic b = new LongArithmeticImpl("899");
-        LongArithmethic c = LongArithmeticMath.Mul(a,b);
+        LongArithmethic c = LongArithmeticMath.mul(a,b);
         assertEquals(c.compareTo(new LongArithmeticImpl("178901")), 0);
     }
 

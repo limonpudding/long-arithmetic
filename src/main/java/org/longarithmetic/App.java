@@ -44,7 +44,7 @@ public class App
                 case 0:
                     F=false;break;
                 case 1:
-                    System.out.println("\nОтвет: "+ LongArithmeticMath.Mul(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.mul(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
                 case 2:
                     System.out.println("\nОтвет: "+ LongArithmeticMath.div(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
                 case 3:

@@ -11,7 +11,9 @@ public class LongArithmeticMath {
         n = dimension;
     }
 
-    public static LongArithmethic sum(LongArithmethic a, LongArithmethic b) {
+    public static LongArithmethic sum(LongArithmethic tmpa, LongArithmethic tmpb) {
+        LongArithmethic a = tmpa;
+        LongArithmethic b = tmpb;
         LongArithmethic result = new LongArithmeticImpl();
         result.setSign(a.getSign());
         if (a.getSign() && !b.getSign()) {
@@ -37,11 +39,13 @@ public class LongArithmeticMath {
     /**
      * Функция умножения двух длинных чисел
      *
-     * @param a первый множитель
-     * @param b второй множитель
+     * @param tmpa первый множитель
+     * @param tmpb второй множитель
      * @return результат умножения
      */
-    public static LongArithmethic Mul(LongArithmethic a, LongArithmethic b) {
+    public static LongArithmethic mul(LongArithmethic tmpa, LongArithmethic tmpb) {
+        LongArithmethic a = tmpa;
+        LongArithmethic b = tmpb;
         LongArithmethic result = new LongArithmeticImpl();
         if (!(a.getSign() && b.getSign() || (!a.getSign() && !b.getSign()))) {
             result.setSign(false);
@@ -105,7 +109,7 @@ public class LongArithmeticMath {
             b = temp;
             c.setSign(false);
         }
-
+        //TODO поменять названия переменных в определении методов
         for (int i = 0; i < maxLength; ++i) {
             if (a.getDigits()[i] >= b.getDigits()[i]) {
                 c.setDigit((byte) (a.getDigits()[i] - b.getDigits()[i]), i);
