@@ -113,9 +113,6 @@ public class LongArithmeticMath {
                 c.setDigit((byte) (a.getDigits()[i] - b.getDigits()[i]), i);
             } else {
                 c.setDigit((byte) (a.getDigits()[i] - b.getDigits()[i] + 10), i);
-                byte[] temp = a.getDigits();
-                temp[i + 1]--;
-                a.setDigits(temp);
                 a.setDigit((byte) (a.getDigit(i + 1) - 1), i + 1);
             }
         }
@@ -149,14 +146,14 @@ public class LongArithmeticMath {
         //TODO выбрасывать исключение ArithmeticException
         LongArithmethic result = new LongArithmeticImpl();
         if (divider.toString().equals("0")) {
-            return result;
+            throw new ArithmeticException();
         }
         if ((dividend.getSign() && divider.getSign()) || (!dividend.getSign() && !divider.getSign())) {
-            result.setSign(false);
+            result.setSign(true);
         }
         LongArithmethic tmp = divider;
         LongArithmethic one = new LongArithmeticImpl();
-        one.getDigits()[0] = 1;
+        one.setDigit((byte)1,0);
         one.setLength(1);
         while (dividend.compareTo(tmp) >= 0) {
             result = Sum(result, one);
