@@ -18,7 +18,7 @@ public class App
         {
             try {
                 if (args[i].equals("-c"))
-                    LongArithmetic.SetDigitsCount(Integer.valueOf(args[++i]));
+                    LongArithmeticMath.SetDigitsCount(Integer.valueOf(args[++i]));
             } catch (Exception e) {
                 System.out.println("Параметр -c задан неверно!");
             }
@@ -44,13 +44,13 @@ public class App
                 case 0:
                     F=false;break;
                 case 1:
-                    System.out.println("\nОтвет: "+LongArithmetic.Mul(new LongArithmetic(a),new LongArithmetic(b)).ToString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.Mul(new LongArithmeticMath(a),new LongArithmeticMath(b)).ToString()); break;
                 case 2:
-                    System.out.println("\nОтвет: "+LongArithmetic.Div(new LongArithmetic(a),new LongArithmetic(b)).ToString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.div(new LongArithmeticMath(a),new LongArithmeticMath(b)).ToString()); break;
                 case 3:
-                    System.out.println("\nОтвет: "+LongArithmetic.Sum(new LongArithmetic(a),new LongArithmetic(b)).ToString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.Sum(new LongArithmeticMath(a),new LongArithmeticMath(b)).ToString()); break;
                 case 4:
-                    System.out.println("\nОтвет: "+LongArithmetic.Sub(new LongArithmetic(a),new LongArithmetic(b)).ToString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.Sub(new LongArithmeticMath(a),new LongArithmeticMath(b)).ToString()); break;
             }
 
 

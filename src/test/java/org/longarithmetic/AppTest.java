@@ -1,6 +1,5 @@
 package org.longarithmetic;
 
-import static org.mockito.Mockito.*;
 import org.junit.*;
 
 import static org.junit.Assert.assertEquals;
@@ -10,9 +9,9 @@ import static org.junit.Assert.assertEquals;
  */
 public class AppTest
 {
-    private LongArithmetic a;
-    private LongArithmetic b;
-    private LongArithmetic c;
+    private LongArithmeticMath a;
+    private LongArithmeticMath b;
+    private LongArithmeticMath c;
 
     @BeforeClass
     public static void beforeClass() {
@@ -25,94 +24,102 @@ public class AppTest
     }
 
     @Before
-    public void initTest() {
+    public void startTest() {
+        System.out.println("Тест начат");
+    }
+    
+    @After
+    public void endTest() {
         System.out.println("Тест завершён");
     }
 
     @Test
     public void testSum(){
-        LongArithmetic a = new LongArithmetic("199");
-        LongArithmetic b = new LongArithmetic("899");
-        LongArithmetic c = LongArithmetic.Sum(b,a);
+        LongArithmeticMath a = new LongArithmeticMath("199");
+        LongArithmeticMath b = new LongArithmeticMath("899");
+        LongArithmeticMath c = LongArithmeticMath.Sum(b,a);
         assertEquals("1098", c.ToString());
     }
 
+    //TODO переименовать тесты. Имена должны быть "говорящими"
+
     @Test
-    public void testSum1(){
-        LongArithmetic a = new LongArithmetic("199");
-        LongArithmetic b = new LongArithmetic("-899");
-        LongArithmetic c = LongArithmetic.Sum(a,b);
+    public void testSumWithNegativeNumber(){
+        LongArithmeticMath a = new LongArithmeticMath("199");
+        LongArithmeticMath b = new LongArithmeticMath("-899");
+        LongArithmeticMath c = LongArithmeticMath.Sum(a,b);
         assertEquals("-700", c.ToString());
     }
 
     @Test
     public void testSum2(){
-        LongArithmetic a = new LongArithmetic("-199");
-        LongArithmetic b = new LongArithmetic("-899");
-        LongArithmetic c = LongArithmetic.Sum(a,b);
+        LongArithmeticMath a = new LongArithmeticMath("-199");
+        LongArithmeticMath b = new LongArithmeticMath("-899");
+        LongArithmeticMath c = LongArithmeticMath.Sum(a,b);
         assertEquals("-1098", c.ToString());
     }
 
     @Test
     public void testSub(){
-        LongArithmetic a = new LongArithmetic("199");
-        LongArithmetic b = new LongArithmetic("899");
-        LongArithmetic c = LongArithmetic.Sub(b,a);
+        LongArithmeticMath a = new LongArithmeticMath("199");
+        LongArithmeticMath b = new LongArithmeticMath("899");
+        LongArithmeticMath c = LongArithmeticMath.Sub(b,a);
         assertEquals("700", c.ToString());
     }
 
     @Test
     public void testSub2(){
-        LongArithmetic a = new LongArithmetic("2001");
-        LongArithmetic b = new LongArithmetic("2");
-        LongArithmetic c = LongArithmetic.Sub(a,b);
+        LongArithmeticMath a = new LongArithmeticMath("2001");
+        LongArithmeticMath b = new LongArithmeticMath("2");
+        LongArithmeticMath c = LongArithmeticMath.Sub(a,b);
         assertEquals("1999", c.ToString());
     }
+    //TODO убрать совпадающие тесты
     @Test
     public void testSub3(){
-        LongArithmetic a = new LongArithmetic("2001");
-        LongArithmetic b = new LongArithmetic("2");
-        LongArithmetic c = LongArithmetic.Sub(a,b);
+        LongArithmeticMath a = new LongArithmeticMath("2001");
+        LongArithmeticMath b = new LongArithmeticMath("2");
+        LongArithmeticMath c = LongArithmeticMath.Sub(a,b);
         assertEquals("1999", c.ToString());
     }
 
     @Test
     public void testSub4(){
-        LongArithmetic a = new LongArithmetic("-2001");
-        LongArithmetic b = new LongArithmetic("2");
-        LongArithmetic c = LongArithmetic.Sub(a,b);
+        LongArithmeticMath a = new LongArithmeticMath("-2001");
+        LongArithmeticMath b = new LongArithmeticMath("2");
+        LongArithmeticMath c = LongArithmeticMath.Sub(a,b);
         assertEquals("-2003", c.ToString());
     }
 
     @Test
     public void testSub5(){
-        LongArithmetic a = new LongArithmetic("-2001");
-        LongArithmetic b = new LongArithmetic("-2");
-        LongArithmetic c = LongArithmetic.Sub(a,b);
+        LongArithmeticMath a = new LongArithmeticMath("-2001");
+        LongArithmeticMath b = new LongArithmeticMath("-2");
+        LongArithmeticMath c = LongArithmeticMath.Sub(a,b);
         assertEquals("-1999", c.ToString());
     }
 
     @Test
     public void testMul(){
-        LongArithmetic a = new LongArithmetic("199");
-        LongArithmetic b = new LongArithmetic("899");
-        LongArithmetic c = LongArithmetic.Mul(a,b);
+        LongArithmeticMath a = new LongArithmeticMath("199");
+        LongArithmeticMath b = new LongArithmeticMath("899");
+        LongArithmeticMath c = LongArithmeticMath.Mul(a,b);
         assertEquals("178901", c.ToString());
     }
 
     @Test
     public void testDiv2(){
-        LongArithmetic b = new LongArithmetic("199");
-        LongArithmetic a = new LongArithmetic("899");
-        LongArithmetic c = LongArithmetic.Div(a,b);
+        LongArithmeticMath b = new LongArithmeticMath("199");
+        LongArithmeticMath a = new LongArithmeticMath("899");
+        LongArithmeticMath c = LongArithmeticMath.div(a,b);
         assertEquals("4", c.ToString());
     }
 
     @Test
     public void testDivNull(){
-        LongArithmetic a = new LongArithmetic("199");
-        LongArithmetic b = new LongArithmetic("0");
-        LongArithmetic c = LongArithmetic.Div(a,b);
+        LongArithmeticMath a = new LongArithmeticMath("199");
+        LongArithmeticMath b = new LongArithmeticMath("0");
+        LongArithmeticMath c = LongArithmeticMath.div(a,b);
         assertEquals("Деление на ноль невозможно", c.ToString());
     }
     @Test
