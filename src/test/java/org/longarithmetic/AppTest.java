@@ -110,10 +110,14 @@ public class AppTest
 
     @Test
     public void testDivNull(){
-        LongArithmetic b = new LongArithmetic("199");
-        LongArithmetic a = new LongArithmetic("0");
-        LongArithmetic c = LongArithmetic.Div(b,a);
+        LongArithmetic a = new LongArithmetic("199");
+        LongArithmetic b = new LongArithmetic("0");
+        LongArithmetic c = LongArithmetic.Div(a,b);
         assertEquals("Деление на ноль невозможно", c.ToString());
+    }
+    @Test
+    public void fibonacci(){
+        assertEquals("6765", new Fibonacci(20).number.ToString());
     }
 
 }
