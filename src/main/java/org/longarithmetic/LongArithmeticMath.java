@@ -19,30 +19,12 @@ public class LongArithmeticMath {
      *
      * @param number Строка
      */
-    public LongArithmeticMath(String number) {
-        length = number.length();
-        int j = 0;
-        if (number.charAt(0) == '-') {
-            sign = false;
-            for (int i = length - 1; i >= 1; --i)
-                digits[j++] = (byte) (number.charAt(i) - '0');
-            length--;
-        } else {
-            for (int i = length - 1; i >= 0; --i)
-                digits[j++] = (byte) (number.charAt(i) - '0');
-        }
-    }
-
-    private LongArithmeticMath() {
-        length = 0;
-    }
-
 
 
 
     //TODO переименовать класс, содержащий операции над числами в длинной арифметике. Всё, что статик в нём оставить. LongArithmeticMath
     public static LongArithmethic Sum(LongArithmethic a, LongArithmethic b) {
-        LongArithmeticImpl result = new LongArithmeticImpl();
+        LongArithmethic result = new LongArithmeticImpl();
         result.setSign(a.getSign());
         if (a.getSign() == true && b.getSign() == false) {
             b.setSign(true);
@@ -71,23 +53,23 @@ public class LongArithmeticMath {
      * @param b второй множитель
      * @return результат умножения
      */
-    public static LongArithmeticMath Mul(LongArithmeticMath a, LongArithmeticMath b) {
-        LongArithmeticMath result = new LongArithmeticMath();
-        if (a.sign != b.sign)
-            result.sign = false;
+    public static LongArithmethic Mul(LongArithmethic a, LongArithmethic b) {
+        LongArithmethic result = new LongArithmeticImpl();
+        if (a.getSign()!= b.getSign())
+            result.setSign(false);
         int tmp = 0;
         int tmp1;
         int i;
         int j;
-        for (i = 0; i < b.length; ++i) {
-            for (j = 0; j < a.length; ++j) {
-                tmp1 = result.digits[j + i];
-                result.digits[j + i] = (byte) ((a.digits[j] * b.digits[i] + tmp1 + tmp) % 10);
-                tmp = (byte) (tmp1 + a.digits[j] * b.digits[i] + tmp) / 10;
+        for (i = 0; i < b.getLength(); ++i) {
+            for (j = 0; j < a.getLength(); ++j) {
+                tmp1 = result.getDigits()[j + i];
+                result.getDigits()[j + i] = (byte) ((a.getDigits()[j] * b.getDigits()[i] + tmp1 + tmp) % 10);
+                tmp = (byte) (tmp1 + a.getDigits()[j] * b.getDigits()[i] + tmp) / 10;
             }
             if (tmp > 0)
-                result.digits[result.GetLength()] += (byte) (tmp % 10);
-            result.length = result.GetLength();
+                result.getDigits()[result.getLength()] += (byte) (tmp % 10);
+            result.setLength(result.getLength());
             tmp = 0;
         }
         return result;
@@ -98,20 +80,7 @@ public class LongArithmeticMath {
      *
      * @return Возвращает строку (число со знаком или без)
      */
-    public String ToString() {
-        String s = "";
-        if (length == -1) {
-            return "Деление на ноль невозможно";
-        }
-        for (int i = 0; i < this.GetLength(); ++i)
-            s = this.digits[i] + s;
-        if (s == "")
-            return "0";
-        if (sign == false)
-            s = "-" + s;
-        return s;
 
-    }
 
     /**
      * Функция вычитания двух длинных чисел
@@ -120,44 +89,45 @@ public class LongArithmeticMath {
      * @param tmpb Вычетаемое значение
      * @return Разность
      */
-    public static LongArithmeticMath Sub(LongArithmeticMath tmpa, LongArithmeticMath tmpb) {
-        LongArithmeticMath a = tmpa;
-        LongArithmeticMath b = tmpb;
-        if (a.sign == true && b.sign == false) {
-            b.sign = true;
+    public static LongArithmethic Sub(LongArithmethic tmpa, LongArithmethic tmpb) {
+        LongArithmethic a = tmpa;
+        LongArithmethic b = tmpb;
+        if (a.getSign() == true && b.getSign() == false) {
+            b.setSign(true);
             return Sum(a, b);
         }
-        if (a.sign == false && b.sign == true) {
-            b.sign = false;
+        if (a.getSign() == false && b.getSign() == true) {
+            b.setSign(false);
             return Sum(b, a);
         }
-        if (a.sign == false && b.sign == false) {
-            b.sign = true;
-            LongArithmeticMath temp = a;
+        if (a.getSign() == false && b.getSign() == false) {
+            b.setSign(true);
+            LongArithmethic temp = a;
             a = b;
             b = temp;
         }
 
-        int maxLength = a.GetLength() > b.GetLength() ? a.length : b.length;
-        LongArithmeticMath c = new LongArithmeticMath();
+        int maxLength = a.getLength() > b.getLength() ? a.getLength(): b.getLength();
+        LongArithmethic c = new LongArithmeticImpl();
 
-        if (Compare(a, b) == -1) {
-            LongArithmeticMath temp = a;
+        if (a.compareTo(b) == -1) {
+            LongArithmethic temp = a;
             a = b;
             b = temp;
-            c.sign = false;
+            c.setSign(false);
         }
 
-        int p = 0;
         for (int i = 0; i < maxLength; ++i) {
-            if (a.digits[i] >= b.digits[i]) {
-                c.digits[i] = (byte) (a.digits[i] - b.digits[i]);
+            if (a.getDigits()[i] >= b.getDigits()[i]) {
+                c.digits[i] = (byte) (a.getDigits()[i] - b.getDigits()[i]);
             } else {
-                c.digits[i] = (byte) (a.digits[i] - b.digits[i] + 10);
-                a.digits[i + 1]--;
+                c.digits[i] = (byte) (a.getDigits()[i] - b.getDigits()[i] + 10);
+                byte [] temp =a.getDigits();
+                temp[i+1]--;
+                a.setDigits(temp);
             }
         }
-        c.GetLength();
+        c.getLength();
         return c;
     }
 
