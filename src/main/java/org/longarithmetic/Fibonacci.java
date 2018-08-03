@@ -10,16 +10,16 @@ public class Fibonacci {
         LongArithmethic prev = new LongArithmeticImpl("1");
         LongArithmethic current = new LongArithmeticImpl("1");
         LongArithmethic next = new LongArithmeticImpl("2");
-        if (x==1){
+        if (x == 1) {
             number = new LongArithmeticImpl("1");
             return;
         }
-        if (x==2){
+        if (x == 2) {
             number = new LongArithmeticImpl("1");
             return;
         }
-        for (int i=2;i<x;++i){
-            next = LongArithmeticMath.Sum(current,prev);
+        for (int i = 2; i < x; ++i) {
+            next = LongArithmeticMath.sum(current, prev);
             prev = current;
             current = next;
         }

@@ -2,28 +2,25 @@ package org.longarithmetic;
 
 public class LongArithmeticMath {
 
-    //TODO атрибуты, которые содержат непосредственно данные о числе. методы доступа к ним и т.п. вынести в отдельный класс
-    //TODO переопределить метод equals, либо имплементировать интерфейс Comaparable
     private static int n = 10000;//максимальная длина числа
     public byte[] digits = new byte[n];
     private int length = 0;
     private boolean sign = true;
 
-    public static void SetDigitsCount(int dimension) {
+    public static void setDigitsCount(int dimension) {
         n = dimension;
     }
 
-    //TODO переименовать класс, содержащий операции над числами в длинной арифметике. Всё, что статик в нём оставить. LongArithmeticMath
-    public static LongArithmethic Sum(LongArithmethic a, LongArithmethic b) {
+    public static LongArithmethic sum(LongArithmethic a, LongArithmethic b) {
         LongArithmethic result = new LongArithmeticImpl();
         result.setSign(a.getSign());
         if (a.getSign() && !b.getSign()) {
             b.setSign(true);
-            return Sub(a, b);
+            return sub(a, b);
         }
         if (!a.getSign() && b.getSign()) {
             b.setSign(false);
-            return Sub(b, a);
+            return sub(b, a);
         }
         int maxLength = a.getLength() > b.getLength() ? a.getLength() : b.getLength();
         int tmp = 0;
@@ -81,16 +78,16 @@ public class LongArithmeticMath {
      * @param tmpb Вычетаемое значение
      * @return Разность
      */
-    public static LongArithmethic Sub(LongArithmethic tmpa, LongArithmethic tmpb) {
+    public static LongArithmethic sub(LongArithmethic tmpa, LongArithmethic tmpb) {
         LongArithmethic a = tmpa;
         LongArithmethic b = tmpb;
         if (a.getSign() && !b.getSign()) {
             b.setSign(true);
-            return Sum(a, b);
+            return sum(a, b);
         }
         if (!a.getSign() && b.getSign()) {
             b.setSign(false);
-            return Sum(b, a);
+            return sum(b, a);
         }
         if (!a.getSign() && !b.getSign()) {
             b.setSign(true);
@@ -143,8 +140,6 @@ public class LongArithmeticMath {
      * @return Результат деления без остатка
      */
     public static LongArithmethic div(LongArithmethic dividend, LongArithmethic divider) {
-
-        //TODO выбрасывать исключение ArithmeticException
         LongArithmethic result = new LongArithmeticImpl();
         if (divider.toString().equals("0")) {
             throw new ArithmeticException();
@@ -157,8 +152,8 @@ public class LongArithmeticMath {
         one.setDigit((byte) 1, 0);
         one.setLength(1);
         while (dividend.compareTo(tmp) >= 0) {
-            result = Sum(result, one);
-            tmp = Sum(tmp, divider);
+            result = sum(result, one);
+            tmp = sum(tmp, divider);
         }
         result.getLength();
         return result;
