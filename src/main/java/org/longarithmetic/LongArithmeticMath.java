@@ -17,11 +17,11 @@ public class LongArithmeticMath {
     public static LongArithmethic Sum(LongArithmethic a, LongArithmethic b) {
         LongArithmethic result = new LongArithmeticImpl();
         result.setSign(a.getSign());
-        if (a.getSign() == true && b.getSign() == false) {
+        if (a.getSign() && !b.getSign()) {
             b.setSign(true);
             return Sub(a, b);
         }
-        if (a.getSign() == false && b.getSign() == true) {
+        if (!a.getSign() && b.getSign()) {
             b.setSign(false);
             return Sub(b, a);
         }
@@ -46,8 +46,9 @@ public class LongArithmeticMath {
      */
     public static LongArithmethic Mul(LongArithmethic a, LongArithmethic b) {
         LongArithmethic result = new LongArithmeticImpl();
-        if (a.getSign() != b.getSign())
+        if (!(a.getSign() && b.getSign() || (!a.getSign() && !b.getSign()))) {
             result.setSign(false);
+        }
         int tmp = 0;
         int tmp1;
         int i;
@@ -83,15 +84,15 @@ public class LongArithmeticMath {
     public static LongArithmethic Sub(LongArithmethic tmpa, LongArithmethic tmpb) {
         LongArithmethic a = tmpa;
         LongArithmethic b = tmpb;
-        if (a.getSign() == true && b.getSign() == false) {
+        if (a.getSign() && !b.getSign()) {
             b.setSign(true);
             return Sum(a, b);
         }
-        if (a.getSign() == false && b.getSign() == true) {
+        if (!a.getSign() && b.getSign()) {
             b.setSign(false);
             return Sum(b, a);
         }
-        if (a.getSign() == false && b.getSign() == false) {
+        if (!a.getSign() && !b.getSign()) {
             b.setSign(true);
             LongArithmethic temp = a;
             a = b;
@@ -153,7 +154,7 @@ public class LongArithmeticMath {
         }
         LongArithmethic tmp = divider;
         LongArithmethic one = new LongArithmeticImpl();
-        one.setDigit((byte)1,0);
+        one.setDigit((byte) 1, 0);
         one.setLength(1);
         while (dividend.compareTo(tmp) >= 0) {
             result = Sum(result, one);
