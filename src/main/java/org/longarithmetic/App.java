@@ -18,7 +18,7 @@ public class App
         {
             try {
                 if (args[i].equals("-c"))
-                    LongArithmeticMath.SetDigitsCount(Integer.valueOf(args[++i]));
+                    LongArithmeticMath.setDigitsCount(Integer.valueOf(args[++i]));
             } catch (Exception e) {
                 System.out.println("Параметр -c задан неверно!");
             }
@@ -48,9 +48,9 @@ public class App
                 case 2:
                     System.out.println("\nОтвет: "+ LongArithmeticMath.div(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
                 case 3:
-                    System.out.println("\nОтвет: "+ LongArithmeticMath.Sum(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.sum(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
                 case 4:
-                    System.out.println("\nОтвет: "+ LongArithmeticMath.Sub(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.sub(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
             }
 
 
