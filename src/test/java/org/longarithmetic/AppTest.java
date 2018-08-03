@@ -74,14 +74,6 @@ public class AppTest
         LongArithmethic c = LongArithmeticMath.Sub(a,b);
         assertEquals("1999", c.toString());
     }
-    //TODO убрать совпадающие тесты
-    @Test
-    public void testSub3(){
-        LongArithmethic a = new LongArithmeticImpl("2001");
-        LongArithmethic b = new LongArithmeticImpl("2");
-        LongArithmethic c = LongArithmeticMath.Sub(a,b);
-        assertEquals("1999", c.toString());
-    }
 
     @Test
     public void testSub4(){
@@ -115,12 +107,11 @@ public class AppTest
         assertEquals("4", c.toString());
     }
 
-    @Ignore
+    @Test(expected = ArithmeticException.class)
     public void testDivNull(){
         LongArithmethic a = new LongArithmeticImpl("199");
         LongArithmethic b = new LongArithmeticImpl("0");
-        LongArithmethic c = LongArithmeticMath.div(a,b);
-        assertEquals("Деление на ноль невозможно", c.toString());
+        LongArithmeticMath.div(a,b);
     }
     @Test
     public void fibonacci(){
