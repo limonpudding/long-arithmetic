@@ -20,8 +20,8 @@ public class AppTestMockito extends AbstractTests {
     public void prepareMock(){
         a = mock(LongArithmethic.class);
         b = mock(LongArithmethic.class);
-        when(a.getSign()).thenReturn(true);
-        when(b.getSign()).thenReturn(false, true);
+        when(a.getSign()).thenReturn(Sign.PLUS);
+        when(b.getSign()).thenReturn(Sign.MINUS, Sign.PLUS);
         when(a.getLength()).thenReturn(2);
         when(b.getLength()).thenReturn(2);
         byte[] t1 = new byte[10000];

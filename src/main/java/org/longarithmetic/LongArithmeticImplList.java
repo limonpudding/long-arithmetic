@@ -1,23 +1,28 @@
 package org.longarithmetic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class LongArithmeticImplList implements LongArithmethic {
 
-    private ArrayList<Byte> digits = new ArrayList<Byte>();
+    private List<Byte> digits = new ArrayList<Byte>(); //TODO в чём минус использования ArrayList в этой задаче
     private int length = 0;
-    private boolean sign = true;
+
+    Sign sign = Sign.PLUS;
 
     public LongArithmeticImplList(String number) {
         length = number.length();
         if (number.charAt(0) == '-') {
-            sign = false;
-            for (int i = length - 1; i >= 1; --i)
+            sign = Sign.MINUS;
+            for (int i = length - 1; i >= 1; --i){
                 digits.add((byte) (number.charAt(i) - '0'));
+            }
             length--;
         } else {
-            for (int i = length - 1; i >= 0; --i)
+            for (int i = length - 1; i >= 0; --i){
                 digits.add((byte) (number.charAt(i) - '0'));
+            }
         }
     }
 
@@ -57,11 +62,11 @@ public class LongArithmeticImplList implements LongArithmethic {
         return digits.size();
     }
 
-    public boolean getSign() {
+    public Sign getSign() {
         return sign;
     }
 
-    public void setSign(boolean sign) {
+    public void setSign(Sign sign) {
         this.sign = sign;
     }
 
@@ -71,7 +76,7 @@ public class LongArithmeticImplList implements LongArithmethic {
             s = this.digits.get(i) + s;
         if (s == "")
             return "0";
-        if (sign == false)
+        if (sign == Sign.MINUS)
             s = "-" + s;
         return s;
 

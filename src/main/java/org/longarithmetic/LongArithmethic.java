@@ -1,5 +1,15 @@
 package org.longarithmetic;
 
+enum Sign {
+    PLUS, MINUS;
+    public Sign reverse() { return this == PLUS ? MINUS : PLUS; }
+}
+
+enum LongConst {
+    ONE, ZERO
+}
+
+
 public interface LongArithmethic extends Comparable<LongArithmethic> {
     byte[] getDigits();
 
@@ -11,9 +21,9 @@ public interface LongArithmethic extends Comparable<LongArithmethic> {
 
     int getLength();
 
-    boolean getSign();
+    Sign getSign();
 
-    void setSign(boolean sign);
+    void setSign(Sign sign);
 
     String toString();
 
