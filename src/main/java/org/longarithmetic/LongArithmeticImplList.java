@@ -1,0 +1,94 @@
+package org.longarithmetic;
+
+import java.util.ArrayList;
+
+public class LongArithmeticImplList implements LongArithmethic {
+
+    private ArrayList<Byte> digits = new ArrayList<Byte>();
+    private int length = 0;
+    private boolean sign = true;
+
+    public LongArithmeticImplList(String number) {
+        length = number.length();
+        if (number.charAt(0) == '-') {
+            sign = false;
+            for (int i = length - 1; i >= 1; --i)
+                digits.add((byte) (number.charAt(i) - '0'));
+            length--;
+        } else {
+            for (int i = length - 1; i >= 0; --i)
+                digits.add((byte) (number.charAt(i) - '0'));
+        }
+    }
+
+    public LongArithmeticImplList() {
+    }
+
+    public byte[] getDigits() {
+        int i = 0;
+        byte[] arr = new byte[digits.size()];
+        for (Byte obj : digits) {
+            arr[i++] = obj;
+        }
+        return arr;
+    }
+
+    public void setDigit(byte digit, int index) {
+        int len = digits.size();
+        while (index + 1 > len) {
+            digits.add((byte) 0);
+            len++;
+        }
+        digits.set(index, digit);
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
+
+    public byte getDigit(int index) {
+        int len = digits.size();
+        if (index + 1 > len)
+            return (byte)0;
+        return digits.get(index);
+    }
+
+    public int getLength() {
+        return digits.size();
+    }
+
+    public boolean getSign() {
+        return sign;
+    }
+
+    public void setSign(boolean sign) {
+        this.sign = sign;
+    }
+
+    public String toString() {
+        String s = "";
+        for (int i = 0; i < this.getLength(); ++i)
+            s = this.digits.get(i) + s;
+        if (s == "")
+            return "0";
+        if (sign == false)
+            s = "-" + s;
+        return s;
+
+    }
+
+
+    public int compareTo(LongArithmethic o) {
+        int i = 0;
+        int n = digits.size() > o.getLength() ? digits.size() : o.getLength();
+        for (i = n - 1; i >= 0 && getDigit(i) == 0 && o.getDigit(i) == 0; --i) ;
+        while (i >= 0 && getDigit(i) == o.getDigit(i))
+            --i;
+        if (i < 0)
+            return 0;
+        else if (getDigit(i) > o.getDigit(i))
+            return 1;
+        else
+            return -1;
+    }
+}
