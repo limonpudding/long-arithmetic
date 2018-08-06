@@ -1,7 +1,8 @@
 package org.longarithmetic;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class LongArithmeticImplList implements LongArithmethic {
@@ -74,7 +75,7 @@ public class LongArithmeticImplList implements LongArithmethic {
         String s = "";
         for (int i = 0; i < this.getLength(); ++i)
             s = this.digits.get(i) + s;
-        if (s == "")
+        if (StringUtils.isBlank(s))
             return "0";
         if (sign == Sign.MINUS)
             s = "-" + s;

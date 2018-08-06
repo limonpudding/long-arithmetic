@@ -11,7 +11,7 @@ public class LongArithmeticImpl implements LongArithmethic {//реализаци
         length = number.length();
         int j = 0;
         if (number.charAt(0) == '-') {
-            sign = Sign.MINUS;
+            sign = Sign.MINUS; //TODO добавить случай для знака +
             for (int i = length - 1; i >= 1; --i)
                 digits[j++] = (byte) (number.charAt(i) - '0');
             length--;
