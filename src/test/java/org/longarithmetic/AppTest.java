@@ -1,68 +1,95 @@
 package org.longarithmetic;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.junit.*;
+
+import static org.junit.Assert.assertEquals;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+public class AppTest extends AbstractTests {
 
-    /**
-     * @return the suite of tests being tested
-     */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
-    }
-
-    /**
-     * Rigourous Test :-)
-     */
+    @Test
     public void testSum(){
-        LongArithmetic a = new LongArithmetic("199");
-        LongArithmetic b = new LongArithmetic("899");
-        LongArithmetic c = LongArithmetic.Sum(b,a);
-        assertEquals("1098", c.ToString());
+        LongArithmethic a = new LongArithmeticImpl("199");
+        LongArithmethic b = new LongArithmeticImpl("899");
+        LongArithmethic c = LongArithmeticMath.sum(b,a);
+        assertEquals(c.compareTo(new LongArithmeticImpl("1098")), 0);
     }
 
-    public void testSub(){
-        LongArithmetic a = new LongArithmetic("199");
-        LongArithmetic b = new LongArithmetic("899");
-        LongArithmetic c = LongArithmetic.Sub(b,a);
-        assertEquals("700", c.ToString());
-    }
-    public void testSub2(){
-        LongArithmetic a = new LongArithmetic("2001");
-        LongArithmetic b = new LongArithmetic("2");
-        LongArithmetic c = LongArithmetic.Sub(a,b);
-        assertEquals("1999", c.ToString());
+    @Test
+    public void testSumWithNegativeNumber(){
+        LongArithmethic a = new LongArithmeticImpl("199");
+        LongArithmethic b = new LongArithmeticImpl("-899");
+        LongArithmethic c = LongArithmeticMath.sum(a,b);
+        assertEquals(c.compareTo(new LongArithmeticImpl("-700")), 0);
     }
 
-    public void testSub3(){
-        LongArithmetic a = new LongArithmetic("2001");
-        LongArithmetic b = new LongArithmetic("2");
-        LongArithmetic c = LongArithmetic.Sub(b,a);
-        assertEquals("-1999", c.ToString());
+    @Test
+    public void testSumNegativeWithNegative(){
+        LongArithmethic a = new LongArithmeticImpl("-199");
+        LongArithmethic b = new LongArithmeticImpl("-899");
+        LongArithmethic c = LongArithmeticMath.sum(a,b);
+        assertEquals(c.compareTo(new LongArithmeticImpl("-1098")), 0);
     }
 
-    public void testMul(){
-        LongArithmetic a = new LongArithmetic("199");
-        LongArithmetic b = new LongArithmetic("899");
-        LongArithmetic c = LongArithmetic.Mul(a,b);
-        assertEquals("178901", c.ToString());
+    @Test
+    public void testSubPositiveWithPositive(){
+        LongArithmethic a = new LongArithmeticImpl("199");
+        LongArithmethic b = new LongArithmeticImpl("899");
+        LongArithmethic c = LongArithmeticMath.sub(b,a);
+        assertEquals(c.compareTo(new LongArithmeticImpl("700")), 0);
+    }
+
+    @Test
+    public void testSubPositiveWithPositiveHard(){
+        LongArithmethic a = new LongArithmeticImpl("2001");
+        LongArithmethic b = new LongArithmeticImpl("2");
+        LongArithmethic c = LongArithmeticMath.sub(a,b);
+        assertEquals(c.compareTo(new LongArithmeticImpl("1999")), 0);
+    }
+
+    @Test
+    public void testSubNegativeWithPositive(){
+        LongArithmethic a = new LongArithmeticImpl("-2001");
+        LongArithmethic b = new LongArithmeticImpl("2");
+        LongArithmethic c = LongArithmeticMath.sub(a,b);
+        assertEquals(c.compareTo(new LongArithmeticImpl("-2003")), 0);
+    }
+
+    @Test
+    public void testSubNegativeWithNegative(){
+        LongArithmethic a = new LongArithmeticImpl("-2001");
+        LongArithmethic b = new LongArithmeticImpl("-2");
+        LongArithmethic c = LongArithmeticMath.sub(a,b);
+        assertEquals(c.compareTo(new LongArithmeticImpl("-1999")), 0);
+    }
+
+    @Test
+    public void testMulPositiveWithPositive(){
+        LongArithmethic a = new LongArithmeticImpl("199");
+        LongArithmethic b = new LongArithmeticImpl("899");
+        LongArithmethic c = LongArithmeticMath.mul(a,b);
+        assertEquals(c.compareTo(new LongArithmeticImpl("178901")), 0);
+    }
+
+    @Test
+    public void testDivPositiveWithPositive(){
+        LongArithmethic b = new LongArithmeticImpl("199");
+        LongArithmethic a = new LongArithmeticImpl("899");
+        LongArithmethic c = LongArithmeticMath.div(a,b);
+        assertEquals(c.compareTo(new LongArithmeticImpl("4")), 0);
+    }
+
+    @Test(expected = ArithmeticException.class)
+    public void testDivNull(){
+        LongArithmethic a = new LongArithmeticImpl("199");
+        LongArithmethic b = new LongArithmeticImpl("0");
+        LongArithmeticMath.div(a,b);
+    }
+    @Test
+    public void fibonacci(){
+        assertEquals(0, new Fibonacci(20).number.compareTo(new LongArithmeticImpl("6765")));
     }
 
 }

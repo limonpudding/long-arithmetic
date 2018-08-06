@@ -8,9 +8,6 @@ import java.util.Scanner;
  */
 public class App 
 {
-    static LongArithmetic one = new LongArithmetic("1");
-    static LongArithmetic two = new LongArithmetic("2");
-    static LongArithmetic zero = new LongArithmetic();
     /**
      * Главный класс. интерфейс работы с пользователем
      * @param args
@@ -21,7 +18,7 @@ public class App
         {
             try {
                 if (args[i].equals("-c"))
-                    LongArithmetic.SetDigitsCount(Integer.valueOf(args[++i]));
+                    LongArithmeticMath.setDigitsCount(Integer.valueOf(args[++i]));
             } catch (Exception e) {
                 System.out.println("Параметр -c задан неверно!");
             }
@@ -35,7 +32,6 @@ public class App
             a=in.nextLine();
             System.out.println( "Введите второе число: " );
             b=in.nextLine();
-            System.out.println(Fib(new LongArithmetic(a)).ToString());
             System.out.println( "Выберите операцию;\n" );
             System.out.println( "" +
                     "1. Умножение\n" +
@@ -46,29 +42,18 @@ public class App
             k = in.nextInt();
             switch (k) {
                 case 0:
-                    F=false;
-                    break;
+                    F=false;break;
                 case 1:
-                    System.out.println(LongArithmetic.Mul(new LongArithmetic(a),new LongArithmetic(b)).ToString());
-                    break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.mul(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
                 case 2:
-                    System.out.println(LongArithmetic.Div(new LongArithmetic(a),new LongArithmetic(b)).ToString());
-                    break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.div(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
                 case 3:
-                    System.out.println(LongArithmetic.Sum(new LongArithmetic(a),new LongArithmetic(b)).ToString());
-                    break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.sum(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
                 case 4:
-                    System.out.println(LongArithmetic.Sub(new LongArithmetic(a),new LongArithmetic(b)).ToString());
-                    break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.sub(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
             }
-    }
 
-    public static LongArithmetic Fib(LongArithmetic n) {
-        if (LongArithmetic.Compare(n, zero) == 0)
-            return zero;
-        else if (LongArithmetic.Compare(n, one) == 0)
-            return one;
-        else
-            return LongArithmetic.Sum(Fib(LongArithmetic.Sub(n, one)),Fib(LongArithmetic.Sub(n, two)));
+
+
     }
 }
