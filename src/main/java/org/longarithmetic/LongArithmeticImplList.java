@@ -88,7 +88,10 @@ public class LongArithmeticImplList <T extends Number> implements LongArithmethi
     }
 
     public int getLength() {
-        return digits.size();
+        for (int i = digits.size() - 1; i >= 0; --i)
+            if (digits.get(i) != 0)
+                return i+1;
+        return 0;
     }
 
     public Sign getSign() {
