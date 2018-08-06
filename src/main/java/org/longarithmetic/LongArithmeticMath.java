@@ -28,10 +28,10 @@ public class LongArithmeticMath {
         int tmp = 0;
         int i;
         for (i = 0; i < maxLength; ++i) {
-            result.getDigits()[i] = (byte) ((a.getDigits()[i] + b.getDigits()[i] + tmp) % 10);
-            tmp = (a.getDigits()[i] + b.getDigits()[i] + tmp) / 10;
+            result.setDigit((byte) ((a.getDigit(i) + b.getDigit(i) + tmp) % 10),i);
+            tmp = (a.getDigit(i) + b.getDigit(i) + tmp) / 10;
         }
-        result.getDigits()[i] = (byte) tmp;
+        result.setDigit((byte) tmp,i);
         result.getLength();
         return result;
     }
@@ -56,12 +56,12 @@ public class LongArithmeticMath {
         int j;
         for (i = 0; i < b.getLength(); ++i) {
             for (j = 0; j < a.getLength(); ++j) {
-                tmp1 = result.getDigits()[j + i];
-                result.getDigits()[j + i] = (byte) ((a.getDigits()[j] * b.getDigits()[i] + tmp1 + tmp) % 10);
-                tmp = (byte) (tmp1 + a.getDigits()[j] * b.getDigits()[i] + tmp) / 10;
+                tmp1 = result.getDigit(j + i);
+                result.setDigit((byte) ((a.getDigit(j) * b.getDigit(i) + tmp1 + tmp) % 10),j + i);
+                tmp = (byte) (tmp1 + a.getDigit(j) * b.getDigit(i) + tmp) / 10;
             }
             if (tmp > 0)
-                result.getDigits()[result.getLength()] += (byte) (tmp % 10);
+                result.setDigit((byte)(result.getDigit(result.getLength())+ (tmp % 10)),result.getLength());
             result.setLength(result.getLength());
             tmp = 0;
         }
@@ -111,10 +111,10 @@ public class LongArithmeticMath {
         }
         //TODO поменять названия переменных в определении методов
         for (int i = 0; i < maxLength; ++i) {
-            if (a.getDigits()[i] >= b.getDigits()[i]) {
-                c.setDigit((byte) (a.getDigits()[i] - b.getDigits()[i]), i);
+            if (a.getDigit(i) >= b.getDigit(i)) {
+                c.setDigit((byte) (a.getDigit(i) - b.getDigit(i)), i);
             } else {
-                c.setDigit((byte) (a.getDigits()[i] - b.getDigits()[i] + 10), i);
+                c.setDigit((byte) (a.getDigit(i) - b.getDigit(i) + 10), i);
                 a.setDigit((byte) (a.getDigit(i + 1) - 1), i + 1);
             }
         }
