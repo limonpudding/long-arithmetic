@@ -1,8 +1,7 @@
 package org.longarithmetic;
 
 
-public interface LongArithmethic <T extends  Number> extends Comparable<LongArithmethic> {
-
+public interface LongArithmethic <T extends Number>  extends Comparable<LongArithmethic> {
 
     void setLength(int length);
 

@@ -29,7 +29,7 @@ public class LongArithmeticMath {
             tmp = (a.getDigit(i) + b.getDigit(i) + tmp) / 10;
         }
         result.setDigit(tmp,i);
-        result.getLength();
+        result.setLength(i+1);
         return result;
     }
 
