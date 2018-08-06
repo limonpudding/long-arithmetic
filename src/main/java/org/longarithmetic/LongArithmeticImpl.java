@@ -5,13 +5,13 @@ public class LongArithmeticImpl implements LongArithmethic {//реализаци
     private static int n = 10000;//максимальная длина числа
     private byte[] digits = new byte[n];
     private int length = 0;
-    private boolean sign = true;
+    Sign sign = Sign.PLUS;
 
     public LongArithmeticImpl(String number) {
         length = number.length();
         int j = 0;
         if (number.charAt(0) == '-') {
-            sign = false;
+            sign = Sign.MINUS;
             for (int i = length - 1; i >= 1; --i)
                 digits[j++] = (byte) (number.charAt(i) - '0');
             length--;
@@ -58,11 +58,11 @@ public class LongArithmeticImpl implements LongArithmethic {//реализаци
         return length;
     }
 
-    public boolean getSign() {
+    public Sign getSign() {
         return sign;
     }
 
-    public void setSign(boolean sign) {
+    public void setSign(Sign sign) {
         this.sign=sign;
     }
 
@@ -72,7 +72,7 @@ public class LongArithmeticImpl implements LongArithmethic {//реализаци
             s = this.digits[i] + s;
         if (s == "")
             return "0";
-        if (sign == false)
+        if (sign == Sign.MINUS)
             s = "-" + s;
         return s;
 

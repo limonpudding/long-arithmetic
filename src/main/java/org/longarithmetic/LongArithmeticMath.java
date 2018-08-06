@@ -3,25 +3,22 @@ package org.longarithmetic;
 public class LongArithmeticMath {
 
     private static int n = 10000;//максимальная длина числа
-    public byte[] digits = new byte[n];
-    private int length = 0;
-    private boolean sign = true;
 
     public static void setDigitsCount(int dimension) {
         n = dimension;
     }
 
-    public static LongArithmethic sum(LongArithmethic tmpa, LongArithmethic tmpb) {
-        LongArithmethic a = tmpa;
-        LongArithmethic b = tmpb;
+    public static LongArithmethic sum(LongArithmethic addendum, LongArithmethic term) {
+        LongArithmethic a = addendum;
+        LongArithmethic b = term;
         LongArithmethic result = new LongArithmeticImplList();
         result.setSign(a.getSign());
-        if (a.getSign() && !b.getSign()) {
-            b.setSign(true);
+        if (a.getSign()==Sign.PLUS && b.getSign()==Sign.MINUS) {
+            b.setSign(Sign.PLUS);
             return sub(a, b);
         }
-        if (!a.getSign() && b.getSign()) {
-            b.setSign(false);
+        if (a.getSign()==Sign.MINUS && b.getSign()==Sign.PLUS) {
+            b.setSign(Sign.MINUS);
             return sub(b, a);
         }
         int maxLength = a.getLength() > b.getLength() ? a.getLength() : b.getLength();
@@ -39,16 +36,16 @@ public class LongArithmeticMath {
     /**
      * Функция умножения двух длинных чисел
      *
-     * @param tmpa первый множитель
-     * @param tmpb второй множитель
+     * @param multiplied первый множитель
+     * @param factor второй множитель
      * @return результат умножения
      */
-    public static LongArithmethic mul(LongArithmethic tmpa, LongArithmethic tmpb) {
-        LongArithmethic a = tmpa;
-        LongArithmethic b = tmpb;
+    public static LongArithmethic mul(LongArithmethic multiplied, LongArithmethic factor) {
+        LongArithmethic a = multiplied;
+        LongArithmethic b = factor;
         LongArithmethic result = new LongArithmeticImplList();
-        if (!(a.getSign() && b.getSign() || (!a.getSign() && !b.getSign()))) {
-            result.setSign(false);
+        if (a.getSign()!=b.getSign()) {
+            result.setSign(Sign.MINUS);
         }
         int tmp = 0;
         int tmp1;
@@ -78,23 +75,23 @@ public class LongArithmeticMath {
     /**
      * Функция вычитания двух длинных чисел
      *
-     * @param tmpa Уменьшаемое значение
-     * @param tmpb Вычетаемое значение
+     * @param minuend Уменьшаемое значение
+     * @param subtrahend Вычетаемое значение
      * @return Разность
      */
-    public static LongArithmethic sub(LongArithmethic tmpa, LongArithmethic tmpb) {
-        LongArithmethic a = tmpa;
-        LongArithmethic b = tmpb;
-        if (a.getSign() && !b.getSign()) {
-            b.setSign(true);
+    public static LongArithmethic sub(LongArithmethic minuend, LongArithmethic subtrahend) {
+        LongArithmethic a = minuend;
+        LongArithmethic b = subtrahend;
+        if (a.getSign()==Sign.PLUS && b.getSign()==Sign.MINUS) {
+            b.setSign(Sign.PLUS);
             return sum(a, b);
         }
-        if (!a.getSign() && b.getSign()) {
-            b.setSign(false);
+        if (a.getSign()==Sign.MINUS && b.getSign()==Sign.PLUS) {
+            b.setSign(Sign.MINUS);
             return sum(b, a);
         }
-        if (!a.getSign() && !b.getSign()) {
-            b.setSign(true);
+        if (a.getSign()==Sign.MINUS && b.getSign()==Sign.MINUS) {
+            b.setSign(Sign.PLUS);
             LongArithmethic temp = a;
             a = b;
             b = temp;
@@ -107,9 +104,9 @@ public class LongArithmeticMath {
             LongArithmethic temp = a;
             a = b;
             b = temp;
-            c.setSign(false);
+            c.setSign(Sign.MINUS);
         }
-        //TODO поменять названия переменных в определении методов
+
         for (int i = 0; i < maxLength; ++i) {
             if (a.getDigit(i) >= b.getDigit(i)) {
                 c.setDigit((byte) (a.getDigit(i) - b.getDigit(i)), i);
@@ -148,8 +145,8 @@ public class LongArithmeticMath {
         if (divider.toString().equals("0")) {
             throw new ArithmeticException();
         }
-        if ((dividend.getSign() && divider.getSign()) || (!dividend.getSign() && !divider.getSign())) {
-            result.setSign(true);
+        if (dividend.getSign()!=divider.getSign()) {
+            result.setSign(Sign.MINUS);
         }
         LongArithmethic tmp = divider;
         LongArithmethic one = new LongArithmeticImplList();
