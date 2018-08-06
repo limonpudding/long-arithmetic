@@ -3,3 +3,4 @@
 2. [Mockito библиотека](http://site.mockito.org)
 3. [Как пользоваться Mockito, зачем он нужен](http://www.vogella.com/tutorials/Mockito/article.html)
 4. [Исключения Java](http://www.quizful.net/post/java-exceptions)
+5. [Generics](https://metanit.com/java/tutorial/3.11.php)
