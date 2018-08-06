@@ -16,13 +16,20 @@ public class LongArithmeticImplList implements LongArithmethic {
         length = number.length();
         if (number.charAt(0) == '-') {
             sign = Sign.MINUS;
-            for (int i = length - 1; i >= 1; --i){
+            for (int i = length - 1; i >= 1; --i) {
                 digits.add((byte) (number.charAt(i) - '0'));
             }
             length--;
         } else {
-            for (int i = length - 1; i >= 0; --i){
-                digits.add((byte) (number.charAt(i) - '0'));
+            if (number.charAt(0) == '+') {
+                for (int i = length - 1; i >= 1; --i) {
+                    digits.add((byte) (number.charAt(i) - '0'));
+                }
+                length--;
+            } else {
+                for (int i = length - 1; i >= 0; --i) {
+                    digits.add((byte) (number.charAt(i) - '0'));
+                }
             }
         }
     }
@@ -55,12 +62,15 @@ public class LongArithmeticImplList implements LongArithmethic {
     public byte getDigit(int index) {
         int len = digits.size();
         if (index + 1 > len)
-            return (byte)0;
+            return (byte) 0;
         return digits.get(index);
     }
 
     public int getLength() {
-        return digits.size();
+        for (int i = digits.size() - 1; i >= 0; --i)
+            if (digits.get(i) != 0)
+                return i+1;
+        return 0;
     }
 
     public Sign getSign() {
@@ -80,9 +90,7 @@ public class LongArithmeticImplList implements LongArithmethic {
         if (sign == Sign.MINUS)
             s = "-" + s;
         return s;
-
     }
-
 
     public int compareTo(LongArithmethic o) {
         int i = 0;

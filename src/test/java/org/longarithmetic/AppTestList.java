@@ -58,6 +58,14 @@ public class AppTestList extends AbstractTests {
     }
 
     @Test
+    public void testSubHard(){
+        LongArithmethic a = new LongArithmeticImplList("1001");
+        LongArithmethic b = new LongArithmeticImplList("1000");
+        LongArithmethic c = LongArithmeticMath.sub(a,b);
+        assertEquals(c.compareTo(new LongArithmeticImplList("1")), 0);
+    }
+
+    @Test
     public void testSubNegativeWithNegative(){
         LongArithmethic a = new LongArithmeticImplList("-2001");
         LongArithmethic b = new LongArithmeticImplList("-2");
