@@ -1,14 +1,15 @@
 package org.longarithmetic;
 
 
-public interface LongArithmethic <T> extends Comparable<LongArithmethic> {
+public interface LongArithmethic extends Comparable<LongArithmethic> {
+
     byte[] getDigits();
 
     void setLength(int length);
 
-    T getDigit(int index);
+    byte getDigit(int index);
 
-    void setDigit(T digit, int index);
+    void setDigit(byte digit, int index);
 
     int getLength();
 
