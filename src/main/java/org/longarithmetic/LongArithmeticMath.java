@@ -14,7 +14,7 @@ public class LongArithmeticMath {
     public static LongArithmethic sum(LongArithmethic tmpa, LongArithmethic tmpb) {
         LongArithmethic a = tmpa;
         LongArithmethic b = tmpb;
-        LongArithmethic result = new LongArithmeticImpl();
+        LongArithmethic result = new LongArithmeticImplList();
         result.setSign(a.getSign());
         if (a.getSign() && !b.getSign()) {
             b.setSign(true);
@@ -46,7 +46,7 @@ public class LongArithmeticMath {
     public static LongArithmethic mul(LongArithmethic tmpa, LongArithmethic tmpb) {
         LongArithmethic a = tmpa;
         LongArithmethic b = tmpb;
-        LongArithmethic result = new LongArithmeticImpl();
+        LongArithmethic result = new LongArithmeticImplList();
         if (!(a.getSign() && b.getSign() || (!a.getSign() && !b.getSign()))) {
             result.setSign(false);
         }
@@ -101,7 +101,7 @@ public class LongArithmeticMath {
         }
 
         int maxLength = a.getLength() > b.getLength() ? a.getLength() : b.getLength();
-        LongArithmethic c = new LongArithmeticImpl();
+        LongArithmethic c = new LongArithmeticImplList();
 
         if (a.compareTo(b) == -1) {
             LongArithmethic temp = a;
@@ -144,7 +144,7 @@ public class LongArithmeticMath {
      * @return Результат деления без остатка
      */
     public static LongArithmethic div(LongArithmethic dividend, LongArithmethic divider) {
-        LongArithmethic result = new LongArithmeticImpl();
+        LongArithmethic result = new LongArithmeticImplList();
         if (divider.toString().equals("0")) {
             throw new ArithmeticException();
         }
@@ -152,7 +152,7 @@ public class LongArithmeticMath {
             result.setSign(true);
         }
         LongArithmethic tmp = divider;
-        LongArithmethic one = new LongArithmeticImpl();
+        LongArithmethic one = new LongArithmeticImplList();
         one.setDigit((byte) 1, 0);
         one.setLength(1);
         while (dividend.compareTo(tmp) >= 0) {
