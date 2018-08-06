@@ -6,3 +6,4 @@
 5. [Generics](https://metanit.com/java/tutorial/3.11.php)
 6. [Java Collections](https://habr.com/post/237043/)
 7. [Java Enums](http://www.quizful.net/post/java_enums)
+8. [Examples of GoF Design Patterns in Java's core libraries](https://stackoverflow.com/questions/1673841/examples-of-gof-design-patterns-in-javas-core-libraries)
