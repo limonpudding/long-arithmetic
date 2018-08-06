@@ -18,20 +18,20 @@ public class LongArithmetic {
      */
     public LongArithmetic(String number) {
         length=number.length();
+        int j=0;
         if (number.charAt(0)=='-'){
-            int j=1;
-            for (int i = length - 1; i >= 0; --i)
+            sign = false;
+            for (int i = length - 1; i >= 1; --i)
                 digits[j++]=(byte)(number.charAt(i) - '0');
             length--;
         }
         else {
-            int j = 0;
             for (int i = length - 1; i >= 0; --i)
                 digits[j++] = (byte) (number.charAt(i) - '0');
         }
     }
 
-    private LongArithmetic() {
+    public LongArithmetic() {
         length = 0;
     }
 
@@ -95,7 +95,6 @@ public class LongArithmetic {
                 result.digits[result.GetLength()] += (byte)(tmp % 10);
             result.length = result.GetLength();
             tmp = 0;
-            System.out.println(result.ToString());
         }
         return result;
     }
@@ -106,9 +105,11 @@ public class LongArithmetic {
      */
     public String ToString() {
         String s = "";
-
-        for (int i = 0; i < this.GetLength(); ++i)
+        int i;
+        for (i = 0; i < this.GetLength(); ++i)
             s = this.digits[i] + s;
+        if (i == 0)
+            return "0";
         if (sign==false)
             s="-" + s;
         return s;
@@ -150,7 +151,6 @@ public class LongArithmetic {
         }
 
         int p=0;
-        System.out.println(maxLength);
         for (int i = 0; i < maxLength; ++i){
             if (a.digits[i] >= b.digits[i]) {
                 c.digits[i] = (byte) (a.digits[i] - b.digits[i]);
@@ -178,8 +178,8 @@ public class LongArithmetic {
     public static int Compare(LongArithmetic a, LongArithmetic b) {
         int i = 0;
         int maxLength = a.GetLength() > b.GetLength()? a.GetLength() : b.GetLength();
-        for (i = n - 1; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; --i);
-        while (a.digits[i] == b.digits[i] && i >= 0)
+        for (i = maxLength - 1; i >= 0 && a.digits[i] == 0 && b.digits[i] == 0; --i);
+        while (i >= 0 && a.digits[i] == b.digits[i])
             --i;
         if (i < 0)
             return 0;
@@ -200,8 +200,6 @@ public class LongArithmetic {
         if (a.sign != b.sign)
             result.sign = false;
         LongArithmetic tmp = b;
-        System.out.println(a.ToString());
-        System.out.println(b.ToString());
         LongArithmetic one = new LongArithmetic();
         one.digits[0] = 1;
         one.length = 1;
