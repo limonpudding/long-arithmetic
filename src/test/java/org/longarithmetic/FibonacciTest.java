@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class FibonacciTest extends AbstractTests{
     @Test
     public void fibonacci(){
-        assertEquals(0, new Fibonacci(20).number.compareTo(new LongArithmeticImpl("6765")));
+        assertEquals(0, new Fibonacci(20).number.compareTo(new LongArithmeticImplList("6765")));
     }
 
 }

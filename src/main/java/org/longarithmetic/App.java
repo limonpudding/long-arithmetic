@@ -44,13 +44,13 @@ public class App
                 case 0:
                     F=false;break;
                 case 1:
-                    System.out.println("\nОтвет: "+ LongArithmeticMath.mul(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.mul(new LongArithmeticImplList(a),new LongArithmeticImplList(b)).toString()); break;
                 case 2:
-                    System.out.println("\nОтвет: "+ LongArithmeticMath.div(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.div(new LongArithmeticImplList(a),new LongArithmeticImplList(b)).toString()); break;
                 case 3:
-                    System.out.println("\nОтвет: "+ LongArithmeticMath.sum(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.sum(new LongArithmeticImplList(a),new LongArithmeticImplList(b)).toString()); break;
                 case 4:
-                    System.out.println("\nОтвет: "+ LongArithmeticMath.sub(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
+                    System.out.println("\nОтвет: "+ LongArithmeticMath.sub(new LongArithmeticImplList(a),new LongArithmeticImplList(b)).toString()); break;
             }
 
 

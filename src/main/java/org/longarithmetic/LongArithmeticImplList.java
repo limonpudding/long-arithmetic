@@ -5,9 +5,9 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LongArithmeticImplList implements LongArithmethic {
+public class LongArithmeticImplList <T extends Number> implements LongArithmethic <T> {
 
-    private List<Byte> digits = new ArrayList<Byte>(); //TODO в чём минус использования ArrayList в этой задаче
+    private List<T> digits = new ArrayList<T>(); //TODO в чём минус использования ArrayList в этой задаче
     private int length = 0;
 
     Sign sign = Sign.PLUS;
@@ -17,32 +17,60 @@ public class LongArithmeticImplList implements LongArithmethic {
         if (number.charAt(0) == '-') {
             sign = Sign.MINUS;
             for (int i = length - 1; i >= 1; --i){
-                digits.add((byte) (number.charAt(i) - '0'));
+                digits.add(kostyl(number.charAt(i)));
             }
             length--;
         } else {
             for (int i = length - 1; i >= 0; --i){
-                digits.add((byte) (number.charAt(i) - '0'));
+                digits.add(kostyl(number.charAt(i)));
             }
         }
+    }
+
+    private T kostyl(char symbol){
+        Object o=null;
+        switch (symbol) {
+            case '0':
+                o = new Integer(0);
+                break;
+            case '1':
+                o = new Integer(1);
+                break;
+            case '2':
+                o = new Integer(2);
+                break;
+            case '3':
+                o = new Integer(3);
+                break;
+            case '4':
+                o = new Integer(4);
+                break;
+            case '5':
+                o = new Integer(5);
+                break;
+            case '6':
+                o = new Integer(6);
+                break;
+            case '7':
+                o = new Integer(7);
+                break;
+            case '8':
+                o = new Integer(8);
+                break;
+            case '9':
+                o = new Integer(9);
+                break;
+        }
+        return (T)o;
     }
 
     public LongArithmeticImplList() {
     }
 
-    public byte[] getDigits() {
-        int i = 0;
-        byte[] arr = new byte[digits.size()];
-        for (Byte obj : digits) {
-            arr[i++] = obj;
-        }
-        return arr;
-    }
-
-    public void setDigit(byte digit, int index) {
+    public void setDigit(T digit, int index) {
         int len = digits.size();
         while (index + 1 > len) {
-            digits.add((byte) 0);
+            digits.add(kostyl('0'));
             len++;
         }
         digits.set(index, digit);
@@ -52,10 +80,10 @@ public class LongArithmeticImplList implements LongArithmethic {
         this.length = length;
     }
 
-    public byte getDigit(int index) {
+    public T getDigit(int index) {
         int len = digits.size();
         if (index + 1 > len)
-            return (byte)0;
+            return kostyl('0');
         return digits.get(index);
     }
 
@@ -87,12 +115,12 @@ public class LongArithmeticImplList implements LongArithmethic {
     public int compareTo(LongArithmethic o) {
         int i = 0;
         int n = digits.size() > o.getLength() ? digits.size() : o.getLength();
-        for (i = n - 1; i >= 0 && getDigit(i) == 0 && o.getDigit(i) == 0; --i) ;
+        for (i = n - 1; i >= 0 && getDigit(i) == kostyl('0') && o.getDigit(i) == kostyl('0'); --i) ;
         while (i >= 0 && getDigit(i) == o.getDigit(i))
             --i;
         if (i < 0)
             return 0;
-        else if (getDigit(i) > o.getDigit(i))
+        else if ((Integer)getDigit(i) > (Integer)o.getDigit(i))
             return 1;
         else
             return -1;

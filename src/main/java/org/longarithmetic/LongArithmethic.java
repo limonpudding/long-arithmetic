@@ -1,8 +1,8 @@
 package org.longarithmetic;
 
 
-public interface LongArithmethic <T> extends Comparable<LongArithmethic> {
-    byte[] getDigits();
+public interface LongArithmethic <T extends  Number> extends Comparable<LongArithmethic> {
+
 
     void setLength(int length);
 

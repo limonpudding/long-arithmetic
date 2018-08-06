@@ -8,10 +8,10 @@ public class LongArithmeticMath {
         n = dimension;
     }
 
-    public static LongArithmethic sum(LongArithmethic addendum, LongArithmethic term) {
-        LongArithmethic a = addendum;
-        LongArithmethic b = term;
-        LongArithmethic result = new LongArithmeticImplList();
+    public static LongArithmethic<Integer> sum(LongArithmethic addendum, LongArithmethic term) {
+        LongArithmethic<Integer> a = addendum;
+        LongArithmethic<Integer> b = term;
+        LongArithmethic<Integer> result = new LongArithmeticImplList();
         result.setSign(a.getSign());
         if (a.getSign()==Sign.PLUS && b.getSign()==Sign.MINUS) {
             b.setSign(Sign.PLUS);
@@ -25,10 +25,10 @@ public class LongArithmeticMath {
         int tmp = 0;
         int i;
         for (i = 0; i < maxLength; ++i) {
-            result.setDigit((byte) ((a.getDigit(i) + b.getDigit(i) + tmp) % 10),i);
+            result.setDigit(((a.getDigit(i) + b.getDigit(i) + tmp) % 10),i);
             tmp = (a.getDigit(i) + b.getDigit(i) + tmp) / 10;
         }
-        result.setDigit((byte) tmp,i);
+        result.setDigit(tmp,i);
         result.getLength();
         return result;
     }
@@ -40,10 +40,10 @@ public class LongArithmeticMath {
      * @param factor второй множитель
      * @return результат умножения
      */
-    public static LongArithmethic mul(LongArithmethic multiplied, LongArithmethic factor) {
-        LongArithmethic a = multiplied;
-        LongArithmethic b = factor;
-        LongArithmethic result = new LongArithmeticImplList();
+    public static LongArithmethic<Integer> mul(LongArithmethic multiplied, LongArithmethic factor) {
+        LongArithmethic<Integer> a = multiplied;
+        LongArithmethic<Integer> b = factor;
+        LongArithmethic<Integer> result = new LongArithmeticImplList();
         if (a.getSign()!=b.getSign()) {
             result.setSign(Sign.MINUS);
         }
@@ -54,11 +54,11 @@ public class LongArithmeticMath {
         for (i = 0; i < b.getLength(); ++i) {
             for (j = 0; j < a.getLength(); ++j) {
                 tmp1 = result.getDigit(j + i);
-                result.setDigit((byte) ((a.getDigit(j) * b.getDigit(i) + tmp1 + tmp) % 10),j + i);
-                tmp = (byte) (tmp1 + a.getDigit(j) * b.getDigit(i) + tmp) / 10;
+                result.setDigit(((a.getDigit(j) * b.getDigit(i) + tmp1 + tmp) % 10),j + i);
+                tmp = (tmp1 + a.getDigit(j) * b.getDigit(i) + tmp) / 10;
             }
             if (tmp > 0)
-                result.setDigit((byte)(result.getDigit(result.getLength())+ (tmp % 10)),result.getLength());
+                result.setDigit((result.getDigit(result.getLength())+ (tmp % 10)),result.getLength());
             result.setLength(result.getLength());
             tmp = 0;
         }
@@ -79,9 +79,9 @@ public class LongArithmeticMath {
      * @param subtrahend Вычетаемое значение
      * @return Разность
      */
-    public static LongArithmethic sub(LongArithmethic minuend, LongArithmethic subtrahend) {
-        LongArithmethic a = minuend;
-        LongArithmethic b = subtrahend;
+    public static LongArithmethic<Integer> sub(LongArithmethic minuend, LongArithmethic subtrahend) {
+        LongArithmethic<Integer> a = minuend;
+        LongArithmethic<Integer> b = subtrahend;
         if (a.getSign()==Sign.PLUS && b.getSign()==Sign.MINUS) {
             b.setSign(Sign.PLUS);
             return sum(a, b);
@@ -92,13 +92,13 @@ public class LongArithmeticMath {
         }
         if (a.getSign()==Sign.MINUS && b.getSign()==Sign.MINUS) {
             b.setSign(Sign.PLUS);
-            LongArithmethic temp = a;
+            LongArithmethic<Integer> temp = a;
             a = b;
             b = temp;
         }
 
         int maxLength = a.getLength() > b.getLength() ? a.getLength() : b.getLength();
-        LongArithmethic c = new LongArithmeticImplList();
+        LongArithmethic<Integer> c = new LongArithmeticImplList();
 
         if (a.compareTo(b) == -1) {
             LongArithmethic temp = a;
@@ -109,10 +109,10 @@ public class LongArithmeticMath {
 
         for (int i = 0; i < maxLength; ++i) {
             if (a.getDigit(i) >= b.getDigit(i)) {
-                c.setDigit((byte) (a.getDigit(i) - b.getDigit(i)), i);
+                c.setDigit((a.getDigit(i) - b.getDigit(i)), i);
             } else {
-                c.setDigit((byte) (a.getDigit(i) - b.getDigit(i) + 10), i);
-                a.setDigit((byte) (a.getDigit(i + 1) - 1), i + 1);
+                c.setDigit((a.getDigit(i) - b.getDigit(i) + 10), i);
+                a.setDigit((a.getDigit(i + 1) - 1), i + 1);
             }
         }
         c.getLength();
@@ -140,17 +140,17 @@ public class LongArithmeticMath {
      * @param divider  Делитель
      * @return Результат деления без остатка
      */
-    public static LongArithmethic div(LongArithmethic dividend, LongArithmethic divider) {
-        LongArithmethic result = new LongArithmeticImplList();
+    public static LongArithmethic<Integer> div(LongArithmethic dividend, LongArithmethic divider) {
+        LongArithmethic<Integer> result = new LongArithmeticImplList();
         if (divider.toString().equals("0")) {
             throw new ArithmeticException();
         }
         if (dividend.getSign()!=divider.getSign()) {
             result.setSign(Sign.MINUS);
         }
-        LongArithmethic tmp = divider;
-        LongArithmethic one = new LongArithmeticImplList();
-        one.setDigit((byte) 1, 0);
+        LongArithmethic<Integer> tmp = divider;
+        LongArithmethic<Integer> one = new LongArithmeticImplList();
+        one.setDigit( 1, 0);
         one.setLength(1);
         while (dividend.compareTo(tmp) >= 0) {
             result = sum(result, one);
