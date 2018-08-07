@@ -83,10 +83,26 @@ public class AppTestList extends AbstractTests {
 
     @Test
     public void testDivPositiveWithPositive(){
-        LongArithmethic b = new LongArithmeticImplList("199");
         LongArithmethic a = new LongArithmeticImplList("899");
+        LongArithmethic b = new LongArithmeticImplList("199");
         LongArithmethic c = LongArithmeticMath.div(a,b);
         assertEquals(c.compareTo(new LongArithmeticImplList("4")), 0);
+    }
+
+    @Test
+    public void testAdvancedDivByOne(){
+        LongArithmethic a = new LongArithmeticImplList("1000");
+        LongArithmethic b = new LongArithmeticImplList("1");
+        LongArithmethic c = LongArithmeticMath.div(a,b);
+        assertEquals(c.compareTo(new LongArithmeticImplList("1000")), 0);
+    }
+
+    @Test
+    public void testAdvancedSelfDiv(){
+        LongArithmethic a = new LongArithmeticImplList("456");
+        LongArithmethic b = new LongArithmeticImplList("456");
+        LongArithmethic c = LongArithmeticMath.div(a,b);
+        assertEquals(c.compareTo(new LongArithmeticImplList("1")), 0);
     }
 
     @Test(expected = ArithmeticException.class)
