@@ -140,7 +140,7 @@ public class LongArithmeticMath {
      * Функция деления без остатка двух длинных чисел
      *
      * @param a Делимое
-     * @param b  Делитель
+     * @param b Делитель
      * @return Результат деления без остатка
      */
     public static LongArithmethic div(LongArithmethic a, LongArithmethic b) {
@@ -148,50 +148,53 @@ public class LongArithmeticMath {
         if (b.toString().equals("0")) {
             throw new ArithmeticException();
         }
-        if (a.compareTo(b)<0)
+        if (a.getSign() != b.getSign()) {
+            result.setSign(Sign.MINUS);
+        }
+        if (a.compareTo(b) < 0) {
             return result;
-        result=LongConst.ONE.getValue();
+        } else if (a.compareTo(b) == 0){
+            return LongConst.ONE.getValue();
+        }
+        result = LongConst.ONE.getValue();
         LongArithmethic tmp = b;
         Stack<LongArithmethic> temps = new Stack<LongArithmethic>();
-        Stack <LongArithmethic> resultList = new Stack<LongArithmethic>();
+        Stack<LongArithmethic> resultList = new Stack<LongArithmethic>();
         temps.push(tmp);
         resultList.push(result);
-        while (a.compareTo(tmp)>0){
-            tmp=LongArithmeticMath.mul(tmp,LongConst.TWO.getValue());
-            result=LongArithmeticMath.mul(result,LongConst.TWO.getValue());
+        while (a.compareTo(tmp) > 0) {
+            tmp = LongArithmeticMath.mul(tmp, LongConst.TWO.getValue());
+            result = LongArithmeticMath.mul(result, LongConst.TWO.getValue());
             temps.push(tmp);
             resultList.push(result);
         }
         resultList.pop();
         temps.pop();
 
-        result=resultList.pop();
-        tmp=temps.pop();
+        result = resultList.pop();
+        tmp = temps.pop();
         //32155597663776798666
         //32155597663776798666
         //1343677013256588121
         //100000000000000000
         //200000000000000000
-        while (a.compareTo(tmp)!=0){
-            if(temps.isEmpty())
+        while (a.compareTo(tmp) != 0) {
+            if (temps.isEmpty())
                 break;
-            LongArithmethic accumResultTmp=LongArithmeticMath.sum(tmp,temps.pop());
-            LongArithmethic accumResult = LongArithmeticMath.sum(result,resultList.pop());
-            if(accumResultTmp.compareTo(a)>0){
+            LongArithmethic accumResultTmp = LongArithmeticMath.sum(tmp, temps.pop());
+            LongArithmethic accumResult = LongArithmeticMath.sum(result, resultList.pop());
+            if (accumResultTmp.compareTo(a) > 0) {
                 //пусто
-            }else if (accumResultTmp.compareTo(a)<0){
+            } else if (accumResultTmp.compareTo(a) < 0) {
                 result = accumResult;
                 tmp = accumResultTmp;
-            }else{
+            } else {
                 result = accumResult;
                 tmp = accumResultTmp;
                 System.out.println("конец вычисления Div");
             }
         }
         result.getLength();
-        if (a.getSign() != b.getSign()) {
-            result.setSign(Sign.MINUS);
-        }
         return result;
     }
 }
