@@ -9,7 +9,6 @@ public class LongArithmeticImplList <T extends Number> implements LongArithmethi
 
     private List<T> digits = new ArrayList<T>(); //TODO в чём минус использования ArrayList в этой задаче
     private int length = 0;
-
     Sign sign = Sign.PLUS;
 
     public LongArithmeticImplList(String number) {
@@ -17,17 +16,17 @@ public class LongArithmeticImplList <T extends Number> implements LongArithmethi
         if (number.charAt(0) == '-') {
             sign = Sign.MINUS;
             for (int i = length - 1; i >= 1; --i){
-                digits.add(kostyl(number.charAt(i)));
+                digits.add(intToT(number.charAt(i)));
             }
             length--;
         } else {
             for (int i = length - 1; i >= 0; --i){
-                digits.add(kostyl(number.charAt(i)));
+                digits.add(intToT(number.charAt(i)));
             }
         }
     }
 
-    private T kostyl(char symbol){
+    private T intToT(char symbol){
         Object o=null;
         switch (symbol) {
             case '0':
@@ -70,7 +69,7 @@ public class LongArithmeticImplList <T extends Number> implements LongArithmethi
     public void setDigit(T digit, int index) {
         int len = digits.size();
         while (index + 1 > len) {
-            digits.add(kostyl('0'));
+            digits.add(intToT('0'));
             len++;
         }
         digits.set(index, digit);
@@ -83,13 +82,13 @@ public class LongArithmeticImplList <T extends Number> implements LongArithmethi
     public T getDigit(int index) {
         int len = digits.size();
         if (index + 1 > len)
-            return kostyl('0');
+            return intToT('0');
         return digits.get(index);
     }
 
     public int getLength() {
         for (int i = digits.size() - 1; i >= 0; --i)
-            if (digits.get(i) != 0)
+            if (!(digits.get(i)).equals( intToT('0')))
                 return i+1;
         return 0;
     }
@@ -118,8 +117,8 @@ public class LongArithmeticImplList <T extends Number> implements LongArithmethi
     public int compareTo(LongArithmethic o) {
         int i = 0;
         int n = digits.size() > o.getLength() ? digits.size() : o.getLength();
-        for (i = n - 1; i >= 0 && getDigit(i) == kostyl('0') && o.getDigit(i) == kostyl('0'); --i) ;
-        while (i >= 0 && getDigit(i) == o.getDigit(i))
+        for (i = n - 1; i >= 0 && getDigit(i) == intToT('0') && o.getDigit(i) == intToT('0'); --i) ;
+        while ((getDigit(i)).equals(o.getDigit(i)))
             --i;
         if (i < 0)
             return 0;
