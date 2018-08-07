@@ -28,7 +28,6 @@ public class App
         boolean F=true;
         String a,b;
         int k=0;
-            System.out.println(LongConst.TWO.getValue().toString()+" "+LongConst.ONE.getValue().toString()+" "+LongConst.ZERO.getValue().toString());
             System.out.println( "Введите первое число: " );
             a=in.nextLine();
             System.out.println( "Введите второе число: " );
