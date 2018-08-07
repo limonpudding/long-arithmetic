@@ -191,7 +191,6 @@ public class LongArithmeticMath {
             } else {
                 result = accumResult;
                 tmp = accumResultTmp;
-                System.out.println("конец вычисления Div");
             }
         }
         result.getLength();
