@@ -28,6 +28,7 @@ public class App
         boolean F=true;
         String a,b;
         int k=0;
+            System.out.println(LongConst.TWO.getValue().toString()+" "+LongConst.ONE.getValue().toString()+" "+LongConst.ZERO.getValue().toString());
             System.out.println( "Введите первое число: " );
             a=in.nextLine();
             System.out.println( "Введите второе число: " );
@@ -52,7 +53,8 @@ public class App
                 case 4:
                     System.out.println("\nОтвет: "+ LongArithmeticMath.sub(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
             }
-
+            //103436770103256588121
+            //4654654654646546465465
 
 
     }

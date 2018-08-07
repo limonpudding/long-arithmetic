@@ -4,7 +4,7 @@ public class LongArithmeticImpl implements LongArithmethic {//реализаци
 
     private static int n = 10000;//максимальная длина числа
     private byte[] digits = new byte[n];
-    private int length = 0;
+    private int length = 1;
     Sign sign = Sign.PLUS;
 
     public LongArithmeticImpl(String number) {
@@ -32,6 +32,13 @@ public class LongArithmeticImpl implements LongArithmethic {//реализаци
 
         public byte getDigit ( int index){
             return digits[index];
+        }
+
+        public int getLengthMul(){
+            int i;
+            for (i = n - 1; i >= 0 && digits[i] == 0; --i) ;
+            length = i + 1;
+            return length;
         }
 
         public void setDigit ( byte digit, int index){
