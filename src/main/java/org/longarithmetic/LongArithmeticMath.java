@@ -156,8 +156,8 @@ public class LongArithmeticMath {
         temps.push(tmp);
         resultList.push(result);
         while (a.compareTo(tmp)>0){
-            tmp=LongArithmeticMath.mul(tmp,tmp);
-            result=LongArithmeticMath.mul(result,result);
+            tmp=LongArithmeticMath.mul(tmp,LongConst.TWO.getValue());
+            result=LongArithmeticMath.mul(result,LongConst.TWO.getValue());
             temps.push(tmp);
             resultList.push(result);
         }
@@ -166,7 +166,11 @@ public class LongArithmeticMath {
 
         result=resultList.pop();
         tmp=temps.pop();
-
+        //32155597663776798666
+        //32155597663776798666
+        //1343677013256588121
+        //100000000000000000
+        //200000000000000000
         while (a.compareTo(tmp)!=0){
             if(temps.isEmpty())
                 break;
