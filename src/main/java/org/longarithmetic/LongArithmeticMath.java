@@ -60,7 +60,8 @@ public class LongArithmeticMath {
                 tmp = (byte) (tmp1 + a.getDigit(j) * b.getDigit(i) + tmp) / 10;
             }
             if (tmp > 0)
-                result.setDigit((byte) (result.getDigit(result.getLength()) + (tmp % 10)), result.getLength());
+
+                result.setDigit((byte) (result.getDigit(result.getLengthMul()) + (tmp % 10)), result.getLengthMul());
             result.setLength(result.getLength());
             tmp = 0;
         }
