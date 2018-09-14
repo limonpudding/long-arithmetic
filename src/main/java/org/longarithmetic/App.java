@@ -52,9 +52,5 @@ public class App
                 case 4:
                     System.out.println("\nОтвет: "+ LongArithmeticMath.sub(new LongArithmeticImpl(a),new LongArithmeticImpl(b)).toString()); break;
             }
-            //103436770103256588121
-            //4654654654646546465465
-
-
     }
 }
