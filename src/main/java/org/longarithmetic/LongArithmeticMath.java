@@ -1,5 +1,7 @@
 package org.longarithmetic;
 
+import java.util.Stack;
+
 public class LongArithmeticMath {
 
     private static int n = 10000;//максимальная длина числа
@@ -58,7 +60,8 @@ public class LongArithmeticMath {
                 tmp = (byte) (tmp1 + a.getDigit(j) * b.getDigit(i) + tmp) / 10;
             }
             if (tmp > 0)
-                result.setDigit((byte) (result.getDigit(result.getLength()) + (tmp % 10)), result.getLength());
+
+                result.setDigit((byte) (result.getDigit(result.getLengthMul()) + (tmp % 10)), result.getLengthMul());
             result.setLength(result.getLength());
             tmp = 0;
         }
@@ -136,25 +139,59 @@ public class LongArithmeticMath {
     /**
      * Функция деления без остатка двух длинных чисел
      *
-     * @param dividend Делимое
-     * @param divider  Делитель
+     * @param a Делимое
+     * @param b Делитель
      * @return Результат деления без остатка
      */
-    public static LongArithmethic div(LongArithmethic dividend, LongArithmethic divider) {
-        LongArithmethic result = new LongArithmeticImplList();
-        if (divider.toString().equals("0")) {
+    public static LongArithmethic div(LongArithmethic a, LongArithmethic b) {
+        LongArithmethic result = LongConst.ZERO.getValue();
+        if (b.toString().equals("0")) {
             throw new ArithmeticException();
         }
-        if (dividend.getSign() != divider.getSign()) {
+        if (a.getSign() != b.getSign()) {
             result.setSign(Sign.MINUS);
         }
-        LongArithmethic tmp = divider;
-        LongArithmethic one = new LongArithmeticImplList();
-        one.setDigit((byte) 1, 0);
-        one.setLength(1);
-        while (dividend.compareTo(tmp) >= 0) {
-            result = sum(result, one);
-            tmp = sum(tmp, divider);
+        if (a.compareTo(b) < 0) {
+            return result;
+        } else if (a.compareTo(b) == 0){
+            return LongConst.ONE.getValue();
+        }
+        result = LongConst.ONE.getValue();
+        LongArithmethic tmp = b;
+        Stack<LongArithmethic> temps = new Stack<LongArithmethic>();
+        Stack<LongArithmethic> resultList = new Stack<LongArithmethic>();
+        temps.push(tmp);
+        resultList.push(result);
+        while (a.compareTo(tmp) > 0) {
+            tmp = LongArithmeticMath.mul(tmp, LongConst.TWO.getValue());
+            result = LongArithmeticMath.mul(result, LongConst.TWO.getValue());
+            temps.push(tmp);
+            resultList.push(result);
+        }
+        resultList.pop();
+        temps.pop();
+
+        result = resultList.pop();
+        tmp = temps.pop();
+        //32155597663776798666
+        //32155597663776798666
+        //1343677013256588121
+        //100000000000000000
+        //200000000000000000
+        while (a.compareTo(tmp) != 0) {
+            if (temps.isEmpty())
+                break;
+            LongArithmethic accumResultTmp = LongArithmeticMath.sum(tmp, temps.pop());
+            LongArithmethic accumResult = LongArithmeticMath.sum(result, resultList.pop());
+            if (accumResultTmp.compareTo(a) > 0) {
+                //пусто
+            } else if (accumResultTmp.compareTo(a) < 0) {
+                result = accumResult;
+                tmp = accumResultTmp;
+            } else {
+                result = accumResult;
+                tmp = accumResultTmp;
+            }
         }
         result.getLength();
         return result;

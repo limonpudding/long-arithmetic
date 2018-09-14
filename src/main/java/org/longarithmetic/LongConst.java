@@ -1,8 +1,9 @@
 package org.longarithmetic;
 
 enum LongConst {
+    ZERO(new LongArithmeticImplList("0")),
     ONE(new LongArithmeticImpl("1")),
-    ZERO(new LongArithmeticImplList("0"));
+    TWO(new LongArithmeticImplList("2"));
 
     private LongArithmethic value;
 

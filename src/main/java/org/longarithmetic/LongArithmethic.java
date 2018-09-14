@@ -13,10 +13,13 @@ public interface LongArithmethic extends Comparable<LongArithmethic> {
 
     int getLength();
 
+    int getLengthMul();
+
     Sign getSign();
 
     void setSign(Sign sign);
 
     String toString();
+
 
 }
